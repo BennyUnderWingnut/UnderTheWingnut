@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Web前端设计 - iGenius</title>
+    <link rel="stylesheet" href="css/material.teal-yellow.min.css"/>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/my.css">
+    <script defer src="js/material.min.js"></script>
+    <script src="js/jQuery.js"></script>
+    <script defer src="mdl-stepper-master/stepper.min.js"></script>
+    <link rel="stylesheet" href="mdl-stepper-master/stepper.min.css">
+    <style>
+        .mdl-list__item{
+            padding: 0 16px;
+        }
+    </style>
+</head>
+
+
+<body style="background-image: none">
+<div id="alert" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<div class="container">
+    <div class="mdl-card mdl-shadow--2dp user-card" style="display: none;z-index: 2;min-height: 0">
+        <div>
+            <div class="user-avatar-large">
+                <img src="images/icons/avatar.jpg" alt/>
+            </div>
+            <div style="display: inline-block;width: 160px;height: 96px;margin-left: 20px">
+                <span style="display: block;line-height: normal;font:bold 13px arial, sans-serif ; ">chensihao</span>
+                <span style="display: block;line-height: normal;font:13px arial, sans-serif;color: rgb(102,102,102) ;">20165009@stu.neu.edu.cn</span>
+                <div style="position: relative;top: 20px">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                            style="display: inline-block;line-height:28px;height: 32px;padding: 0 16px"
+                            onclick=myAccount()>我的账号
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised"
+                            onClick="window.location.href='index.html'"
+                            style="margin: auto;display: inline-block;line-height:28px;height: 32px;padding: 0">
+                        注销
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--waterfall" id="header" style="z-index: 0">
+            <div class="cover">
+                <div class="mdl-layout__header-row">
+                    <img src="images/icons/icon-white.png" alt class="icon-small">
+                    <span class="mdl-layout-title">Web前端设计 - 第一周</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <div id="search-bar" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+                        </div>
+                    </div>
+                    <div class="user-avatar">
+                        <i class="material-icons  mdl-list__item-avatar" onClick="location.href='login.html'">person</i>
+                    </div>
+                </div>
+                <div class=" mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link main this-page" href="index.html"
+                           style="border-bottom: 30px">首页</a>
+                        <a class="mdl-navigation__link schools" href="">所有课程</a>
+                        <a class="mdl-navigation__link forum" href="">合作院校</a>
+                        <a class="mdl-navigation__link plan" href="plan.html">课程规划</a>
+                        <a class="mdl-navigation__link help" href="">帮助</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title drawer-title mdl-color--teal"><img src="images/icons/icon-white.png"
+                                                                                 class="icon-med" alt
+                                                                                 style="top:15px;left: 7px"><span
+                        style="color: #FFFFFF; "><br>iGENIUS</span></span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">home</i>首页</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">list</i>所有课程</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">school</i>合作院校</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">add_shopping_cart</i>课程购买</a>
+                <a class="mdl-navigation__link my" href="my.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">credit_card</i>账户明细</a>
+                <a class="mdl-navigation__link plan" href="plan.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">group_work</i>课程规划</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">build</i>账户设置</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">share</i>合作推广</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">question_answer</i>帮助</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+                    <div class="mdl-layout__drawer">
+                        <a class="mdl-layout-title mdl-navigation__link" href="lesson.html">返回Web前端设计</a>
+                        <nav class="mdl-navigation">
+                            <a class="mdl-navigation__link" href="study.html">进行Web前端开发需要掌握的技能 20分钟</a>
+                            <a class="mdl-navigation__link" href="">前端工程师就业前景 15分钟</a>
+                            <a class="mdl-navigation__link mdl-navigation__link--current" href="homework.html">作业
+                                15分钟</a>
+                        </nav>
+                    </div>
+                    <main class="mdl-layout__content">
+                        <div class="page-content" style="margin: 40px 0px 40px 40px;font-size: 0">
+                            <span class="mdl-typography--headline">作业</span>
+                            <ul class="demo-list-control mdl-list">
+                                <li class="mdl-list__item">
+                                    <span>
+                                        1. Web前端开发技术三要素不包括下列哪一项？
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q1-1">
+                                            <input type="radio" id="q1-1" class="mdl-radio__button" name="q1" value="HTML"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        HTML
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q1-2">
+                                            <input type="radio" id="q1-2" class="mdl-radio__button" name="q1" value="CSS"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        CSS
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q1-3">
+                                            <input type="radio" id="q1-3" class="mdl-radio__button" name="q1" value="Java"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        Java
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q1-4">
+                                            <input type="radio" id="q1-4" class="mdl-radio__button" name="q1" value="Javascript"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        Javascript
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="demo-list-control mdl-list">
+                                <li class="mdl-list__item">
+                                    <span>
+                                        2. Web前端开发软件不包括下列哪一项？
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q2-1">
+                                            <input type="radio" id="q2-1" class="mdl-radio__button" name="q2" value="Photoshop"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        Photoshop
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q2-2">
+                                            <input type="radio" id="q2-2" class="mdl-radio__button" name="q2" value="Dreamweaver"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        Dreamweaver
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q2-3">
+                                            <input type="radio" id="q2-3" class="mdl-radio__button" name="q2" value="Webstorm"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        WebStorm
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q2-4">
+                                            <input type="radio" id="q2-4" class="mdl-radio__button" name="q2" value="Eclipse"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        Eclipse
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="demo-list-control mdl-list">
+                                <li class="mdl-list__item">
+                                    <span>
+                                        3. 判断正误：前端开发的入门门槛较高
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q3-1">
+                                            <input type="radio" id="q3-1" class="mdl-radio__button" name="q1" value="true"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        正确
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q3-2">
+                                            <input type="radio" id="q3-2" class="mdl-radio__button" name="q1" value="false"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        错误
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="demo-list-control mdl-list">
+                                <li class="mdl-list__item">
+                                    <span>
+                                        4. 判断正误：优秀的前端开发工程师需要掌握一定的SEO网站优化技术
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q4-1">
+                                            <input type="radio" id="q4-1" class="mdl-radio__button" name="q1" value="true"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        正确
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="q4-2">
+                                            <input type="radio" id="q4-2" class="mdl-radio__button" name="q1" value="false"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        错误
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="demo-list-control mdl-list">
+                                <li class="mdl-list__item">
+                                    <span>
+                                        5. 多选题：下列哪些公司有对于优秀的前端开发工程师的需求
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="q5-1">
+                                            <input type="checkbox" id="q5-1" class="mdl-checkbox__input"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        Google
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="q5-2">
+                                            <input type="checkbox" id="q5-2" class="mdl-checkbox__input"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        百度
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="q5-3">
+                                            <input type="checkbox" id="q5-3" class="mdl-checkbox__input"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        Twitch
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="q5-4">
+                                            <input type="checkbox" id="q5-4" class="mdl-checkbox__input"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        Amazon
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="demo-list-control mdl-list">
+                                <li class="mdl-list__item">
+                                    <span>
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="hornor" id="hornor-checkbox">
+                                            <input type="checkbox" id="hornor" class="mdl-checkbox__input"/>
+                                        </label>
+                                    </span>
+                                    <span>
+                                        我已认真阅读并遵守<a style="color: rgb(0,150,136)">诚信守则</a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored is-disabled mdl-button--disabled"
+                                    id="submit" style="margin-left:16px">
+                                提交作业
+                            </button>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="js/script.js"></script>
+<script>
+    $('#hornor-checkbox').on('change',function () {
+        if($(this).hasClass('is-checked')){
+            enable('#submit');
+        } else{
+            disable('#submit');
+        }
+    });
+    function disable(s) {
+        $(s).addClass('mdl-button--disabled');
+        $(s).addClass('is-disabled');
+        $(s).off();
+    }
+    function enable(s) {
+        $(s).removeClass('mdl-button--disabled');
+        $(s).removeClass('is-disabled');
+        $(s).on('click',function () {
+            var data = {
+                message: '作业已提交',
+                timeout: 2000,
+                actionHandler: back,
+                actionText: '返回课程页'
+            }
+            snackbarContainer.MaterialSnackbar.showSnackbar(data);
+        });
+    }
+    var back=function () {
+        window.location.href='study.html?id='+userID;
+    }
+</script>
+</body>
+
+</html>

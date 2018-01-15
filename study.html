@@ -1,0 +1,422 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Web前端设计 - iGenius</title>
+    <link rel="stylesheet" href="css/material.teal-yellow.min.css"/>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/my.css">
+    <script defer src="js/material.min.js"></script>
+    <script src="js/jQuery.js"></script>
+    <script defer src="mdl-stepper-master/stepper.min.js"></script>
+    <link rel="stylesheet" href="mdl-stepper-master/stepper.min.css">
+    <style>
+        .comment-section {
+            margin: 20px 40px 40px 40px;
+        }
+
+        .mdl-chip--contact {
+            margin-right: 20px;
+        }
+
+        .comment-section .mdl-typography--caption {
+            color: rgb(108, 108, 108);
+            display: inline-block;
+            position: relative;
+            margin-left: 20px;
+            float: right;
+        }
+
+        .comment-section > div {
+            margin-bottom: 20px;
+        }
+
+        .comment-section .mdl-typography--body-1 {
+            margin-top: 10px;
+            display: block;
+        }
+
+        .comment-section .material-icons {
+            font-size: 16px;
+            margin-left: 20px;
+            float: right;
+        }
+
+        .comment-section .mdl-textfield {
+            width: 100%;
+        }
+
+        .mdl-typography--headline {
+            display: block;
+        }
+    </style>
+</head>
+
+
+<body style="background-image: none">
+<div id="alert" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<div class="container">
+    <div class="mdl-card mdl-shadow--2dp user-card" style="display: none;z-index: 2;min-height: 0">
+        <div>
+            <div class="user-avatar-large">
+                <img src="images/icons/avatar.jpg" alt/>
+            </div>
+            <div style="display: inline-block;width: 160px;height: 96px;margin-left: 20px">
+                <span style="display: block;line-height: normal;font:bold 13px arial, sans-serif ; ">chensihao</span>
+                <span style="display: block;line-height: normal;font:13px arial, sans-serif;color: rgb(102,102,102) ;">20165009@stu.neu.edu.cn</span>
+                <div style="position: relative;top: 20px">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                            style="display: inline-block;line-height:28px;height: 32px;padding: 0 16px"
+                            onclick=myAccount()>我的账号
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised"
+                            onClick="window.location.href='index.html'"
+                            style="margin: auto;display: inline-block;line-height:28px;height: 32px;padding: 0">
+                        注销
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--waterfall" id="header" style="z-index: 0">
+            <div class="cover">
+                <div class="mdl-layout__header-row">
+                    <img src="images/icons/icon-white.png" alt class="icon-small">
+                    <span class="mdl-layout-title">Web前端设计 - 第一周</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <div id="search-bar" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+                        </div>
+                    </div>
+                    <div class="user-avatar">
+                        <i class="material-icons  mdl-list__item-avatar" onClick="location.href='login.html'">person</i>
+                    </div>
+                </div>
+                <div class=" mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link main this-page" href="index.html"
+                           style="border-bottom: 30px">首页</a>
+                        <a class="mdl-navigation__link schools" href="">所有课程</a>
+                        <a class="mdl-navigation__link forum" href="">合作院校</a>
+                        <a class="mdl-navigation__link plan" href="plan.html">课程规划</a>
+                        <a class="mdl-navigation__link help" href="">帮助</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title drawer-title mdl-color--teal"><img src="images/icons/icon-white.png"
+                                                                                 class="icon-med" alt
+                                                                                 style="top:15px;left: 7px"><span
+                        style="color: #FFFFFF; "><br>iGENIUS</span></span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">home</i>首页</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">list</i>所有课程</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">school</i>合作院校</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">add_shopping_cart</i>课程购买</a>
+                <a class="mdl-navigation__link my" href="my.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">credit_card</i>账户明细</a>
+                <a class="mdl-navigation__link plan" href="plan.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">group_work</i>课程规划</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">build</i>账户设置</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">share</i>合作推广</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">question_answer</i>帮助</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+                    <div class="mdl-layout__drawer">
+                        <a class="mdl-layout-title mdl-navigation__link" href="lesson.html">返回Web前端设计</a>
+                        <nav class="mdl-navigation">
+                            <a class="mdl-navigation__link mdl-navigation__link--current" href="study.html">进行Web前端开发需要掌握的技能
+                                20分钟</a>
+                            <a class="mdl-navigation__link" href="">前端工程师就业前景 15分钟</a>
+                            <a class="mdl-navigation__link" href="homework.html">作业 15分钟</a>
+                        </nav>
+                    </div>
+                    <main class="mdl-layout__content">
+                        <div style="margin: 40px 0px 40px 40px;font-size: 0">
+                            <span class="mdl-typography--headline">进行Web前端开发需要掌握的技能</span>
+                            <div style="margin-right: 40px">
+                                <iframe height="500px" src="https://www.youtube.com/embed/rmTg-qHcGs4"
+                                        frameborder="0" gesture="media" allow="encrypted-media"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <hr>
+                        <span class="mdl-typography--title"
+                              style="margin: 20px 0px 0px 40px;display: block">字幕文字</span>
+                        <span class="mdl-typography--body-1" style="margin: 20px 40px 40px 40px;display: block">大家好，我是来自东北大学的王蓓蕾，
+                                是本次Web前端设计课程的主讲师。<br><br>Web前端开发技术包括三个要素：HTML、CSS和JavaScript，随着RIA的流行和普及，Flash/Flex、
+                                Silverlight、XML和服务器端语言也是前端开发工程师应该掌握的。随着时代的发展，前端开发技术的三要素也演变成为现今的：html5，css3，
+                                jquery。Web前端开发工程师既要与上游的交互设计师、视觉设计师和产品经理沟通，又要与下游的服务器端工程师沟通，需要掌握的技能非常多。
+                                这就从知识的广度上对Web前端开发工程师提出了要求。如果要精于前端开发这一行，也许要先精十行。然而，全才总是少有的。所以，对于不太重要的知识，
+                                我们只需要“通”即可。但“通”到什么程度才算够用呢？对于很多初级前端开发工程师来说，这个问题是非常令人迷惑的。<br><br>前端开发的入门门槛其
+                                实非常低，与服务器端语言先慢后快的学习曲线相比，前端开发的学习曲线是先快后慢。所以，对于从事IT工作的人来说，前端开发是个不错的切入点。
+                                也正因为如此，前端开发领域有很多自学成“才”的同行，但大多数人都停留在会用的阶段，因为后面的学习曲线越来越陡峭，每前进一步都很难。另一方面，
+                                正如前面所说，前端开发是个非常新的职业，对一些规范和最佳实践的研究都处于探索阶段。总有新的灵感和技术不时闪现出来，例如CSS sprite、负边距
+                                布局、栅格布局等；各种JavaScript框架层出不穷，为整个前端开发领域注入了巨大的活力；浏览器大战也越来越白热化，跨浏览器兼容方案依然是五花
+                                八门。为了满足“高可维护性”的需要，需要更深入、更系统地去掌握前端知识，这样才可能创建一个好的前端架构，保证代码的质量。<br><br>
+                                一位好的Web前端开发工程师在知识体系上既要有广度，又要有深度，所以很多大公司即使出高薪也很难招聘到理想的前端开发工程师。现在说的重点不在于
+                                讲解技术，而是更侧重于对技巧的讲解。技术非黑即白，只有对和错，而技巧则见仁见智。以前会Photoshop和Dreamweaver就可以制作网页，现在只掌握
+                                这些已经远远不够了。无论是开发难度上，还是开发方式上，现在的网页制作都更接近传统的网站后台开发，所以现在不再叫网页制作，而是叫Web前端开发。
+                                Web前端开发在产品开发环节中的作用变得越来越重要，而且需要专业的前端工程师才能做好，这方面的专业人才近两年来备受青睐。Web前端开发是一项很
+                                特殊的工作，涵盖的知识面非常广，既有具体的技术，又有抽象的理念。简单地说，它的主要职能就是把网站的界面更好地呈现给用户。<br><br>
+                                所以一名优秀的前端开发工程师，不单单需要掌握前端必须的各种技术，同时还要掌握其它技术，需要掌握一点后台的知识，同时也要对网站构架有一定的了
+                                解，同时还要掌握一定的SEO网站优化技术，这样才可以称之为一个“优秀的web前端开发工程师”。除了技术以外，还需要一定的时间来沉淀自己。一名资深
+                                的优秀web前端开发工程师，是每个大型企业都渴望的人才。业内人士表示，宁可高薪招人，险企也不愿自己培养相关的技术人才。<br><br>
+                                如何才能做得更好呢？第一，必须掌握基本的Web前端开发技术，其中包括：CSS、HTML、SEO、DOM、BOM、Ajax、JavaScript等，在掌握这些技术的同时，
+                                还要清楚地了解它们在不同浏览器上的兼容情况、渲染原理和存在的Bug。第二，在一名合格的前端工程师的知识结构中，网站性能优化、SEO和服务器端的基
+                                础知识也是必须掌握的。第三，必须学会运用各种工具进行辅助开发。第四，除了要掌握技术层面的知识，还要掌握理论层面的知识，包括代码的可维护性、
+                                组件的易用性、分层语义模板和浏览器分级支持，等等。可见，看似简单的网页制作，如果要做得更好、更专业，真的是不简单。这就是前端开发的特点，也
+                                是让很多人困惑的原因。如此繁杂的知识体系让新手学习起来无从下手，对于老手来说，也时常不知道下一步该学什么。代码质量是前端开发中应该重点考虑
+                                的问题之一。例如，实现一个网站界面可能会有无数种方案，但有些方案的维护成本会比较高，有些方案会存在性能问题，而有些方案则更易于维护，而且性
+                                能也比较好。这里的关键影响因素就是代码质量。CSS、HTML、JavaScript这三种前端开发语言的特点是不同的，对代码质量的要求也不同，但它们之间又
+                                有着千丝万缕的联系。
+                            </span>
+                        <hr>
+                        <span class="mdl-typography--title"
+                              style="margin: 20px 0px 0px 40px;display: block">教授留言</span>
+                        <div class="comment-section">
+                            <div>
+                                    <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
+                                        <img class="mdl-chip__contact" src="images/people/wangbeilei.jpeg">
+                                        <span class="mdl-chip__text">王蓓蕾&nbsp&nbsp</span>
+                                    </span>
+                                <span class="mdl-typography--body-1">前端开发的职责：<br>
+                                        1、使用Div+css并结合Javascript负责产品的前端开发和页面制作;<br>
+                                        2、熟悉W3C标准和各主流浏览器在前端开发中的差异，能熟练运用DIV+CSS，提供针对不同浏览器的前端页面解决方案；<br>
+                                        3、负责相关产品的需求以及前端程序的实现，提供合理的前端架构；<br>
+                                        4、与产品、后台开发人员保持良好沟通，能快速理解、消化各方需求，并落实为具体的开发工作；<br>
+                                        5、了解服务器端的相关工作，在交互体验、产品设计等方面有自己的见解。
+                                    </span>
+                                <span class="mdl-typography--caption">81682人赞</span>
+                                <span class="mdl-typography--caption">2017/12/17</span>
+                                <i class="mdl-color-text--blue-grey-400 material-icons"
+                                   role="presentation">thumb_up</i>
+                                <i class="mdl-color-text--blue-grey-400 material-icons"
+                                   role="presentation">thumb_down</i>
+                            </div>
+                        </div>
+                        <hr>
+                        <span class="mdl-typography--title"
+                              style="margin: 20px 0px 0px 40px;display: block">提问</span>
+                        <div class="comment-section">
+                            <div>
+                                    <span class="mdl-chip mdl-chip--contact">
+                                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">李</span>
+                                        <span class="mdl-chip__text">李小刚</span>
+                                </span>
+                                <span class="mdl-chip"><span class="mdl-chip__text">同问</span></span>
+                                <span class="mdl-chip"><span class="mdl-chip__text">热门</span></span>
+                                <span class="mdl-typography--body-1">
+                                        老师，请问Web前端优化要做到哪些呢？
+                                    </span>
+                                <span class="mdl-typography--caption">7301人赞</span>
+                                <span class="mdl-typography--caption">2017/12/17</span>
+                                <i class="mdl-color-text--blue-grey-400 material-icons"
+                                   role="presentation">thumb_up</i>
+                                <i class="mdl-color-text--blue-grey-400 material-icons"
+                                   role="presentation">thumb_down</i>
+                            </div>
+                            <div style="margin-left: 20px">
+                                <div>
+                                <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
+                                    <img class="mdl-chip__contact" src="images/people/wangbeilei.jpeg">
+                                    <span class="mdl-chip__text">王蓓蕾&nbsp&nbsp</span>
+                                </span>
+                                    <span class="mdl-chip"><span class="mdl-chip__text">精彩答案</span></span>
+                                    <span class="mdl-chip"><span class="mdl-chip__text">教授回答</span></span>
+                                    <span class="mdl-typography--body-1">Web前端优化的要求有：尽量减少HTTP请求 (Make Fewer HTTP Requests)，
+                                    减少 DNS 查找 (Reduce DNS Lookups)，避免重定向 (Avoid Redirects)，使得 Ajax 可缓存 (Make Ajax Cacheable)，
+                                    延迟载入组件 (Post-load Components)，预载入组件 (Preload Components)，
+                                    减少 DOM 元素数量 (Reduce the Number of DOM Elements)，切分组件到多个域 (Split Components Across Domains)，
+                                    最小化 iframe 的数量 (Minimize the Number of iframes)，杜绝 http 404 错误 (No 404s)等。</span>
+                                    <span class="mdl-typography--caption">92692人赞</span>
+                                    <span class="mdl-typography--caption">2017/12/17</span>
+                                    <i class="mdl-color-text--blue-grey-400 material-icons"
+                                       role="presentation">thumb_up</i>
+                                    <i class="mdl-color-text--blue-grey-400 material-icons"
+                                       role="presentation">thumb_down</i>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield" style="margin: 0;max-width: 90%;display: inline-block;">
+                                    <textarea class="mdl-textfield__input" type="text" rows="1" id="answer1"></textarea>
+                                    <label class="mdl-textfield__label" for="answer1">写下你的答案</label>
+                                </div>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                        id="answer1_submit" style="float: right;top: 10px">回答问题</button>
+                            </div>
+                            <div>
+                                    <span class="mdl-chip mdl-chip--contact">
+                                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">张</span>
+                                        <span class="mdl-chip__text">张晓丽</span>
+                                </span>
+                                <span class="mdl-chip"><span class="mdl-chip__text">同问</span></span>
+                                <span class="mdl-typography--body-1">
+                                        老师，我觉得网页写起来比较慢，请问怎样加快Web前端开发的速度？
+                                    </span>
+                                <span class="mdl-typography--caption">2047人赞</span>
+                                <span class="mdl-typography--caption">2017/12/20</span>
+                                <i class="mdl-color-text--blue-grey-400 material-icons"
+                                   role="presentation">thumb_up</i>
+                                <i class="mdl-color-text--blue-grey-400 material-icons"
+                                   role="presentation">thumb_down</i>
+                            </div>
+                            <div style="margin-left: 20px">
+                                <div>
+                                <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
+                                    <img class="mdl-chip__contact" src="images/icons/avatar.jpg">
+                                    <span class="mdl-chip__text">陈思豪&nbsp&nbsp</span>
+                                </span>
+                                    <span class="mdl-chip"><span class="mdl-chip__text">精彩答案</span></span>
+                                    <span class="mdl-typography--body-1">当你掌握了HTML，服务器端脚本语言，CSS和JavaScript后，就应该找一个Web框架
+                                        加快你的Web开发速度，使用框架可以节约你很多时间，如果你使用PHP，可选的框架有CakePHP，CodeIgniter，Zend等，Python程序员喜
+                                        欢使用Django和 webpy，Ruby程序员喜欢使用RoR。</span>
+                                    <span class="mdl-typography--caption">92692人赞</span>
+                                    <span class="mdl-typography--caption">2017/12/17</span>
+                                    <i class="mdl-color-text--blue-grey-400 material-icons"
+                                       role="presentation">thumb_up</i>
+                                    <i class="mdl-color-text--blue-grey-400 material-icons"
+                                       role="presentation">thumb_down</i>
+                                    <div class="mdl-textfield mdl-js-textfield" style="margin: 0;max-width: 90%;display: inline-block;">
+                                        <textarea class="mdl-textfield__input" type="text" rows="1" id="answer2"></textarea>
+                                        <label class="mdl-textfield__label" for="answer2">写下你的答案</label>
+                                    </div>
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                            id="answer2_submit" style="float: right;top: 10px">回答问题</button>
+                                </div>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield" style="margin: 0">
+                                <textarea class="mdl-textfield__input" type="text" rows="3" id="ask"></textarea>
+                                <label class="mdl-textfield__label" for="ask">写下你的问题</label>
+                            </div>
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                    id="ask_submit">
+                                提出问题
+                            </button>
+                        </div>
+                        <hr>
+                        <span class="mdl-typography--title"
+                              style="margin: 20px 0px 0px 40px;display: block">评论</span>
+                        <div class="comment-section">
+                            <div>
+                                <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
+                                    <img class="mdl-chip__contact" src="images/people/avatar2.png">
+                                    <span class="mdl-chip__text">王小明&nbsp&nbsp</span>
+                                </span>
+                                <span class="mdl-chip"><span class="mdl-chip__text">热门</span></span>
+                                <span class="mdl-chip"><span class="mdl-chip__text">教授推荐</span></span>
+                                <span class="mdl-typography--body-1">
+                                        一位好的Web前端开发工程师在知识体系上既要有广度，又要有深度，所以很多大公司即使出高薪也很难招聘到理想的前端开发工程师。现在说的
+                                        重点不在于讲解技术，而是更侧重于对技巧的讲解。技术非黑即白，只有对和错，而技巧则见仁见智。以前会Photoshop和Dreamweaver就可以
+                                        制作网页，现在只掌握这些已经远远不够了。无论是开发难度上，还是开发方式上，现在的网页制作都更接近传统的网站后台开发，所以现在不再
+                                        叫网页制作，而是叫Web前端开发。
+                                    </span>
+                                <span class="mdl-typography--caption">8264人赞</span>
+                                <span class="mdl-typography--caption">2017/12/17</span>
+                                <i class="mdl-color-text--blue-grey-400 material-icons"
+                                   role="presentation">thumb_up</i>
+                                <i class="mdl-color-text--blue-grey-400 material-icons"
+                                   role="presentation">thumb_down</i>
+                            </div>
+                            <div>
+                                    <span class="mdl-chip mdl-chip--contact">
+                                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">李</span>
+                                        <span class="mdl-chip__text">李小红</span>
+                                    </span>
+                                <span class="mdl-chip"><span class="mdl-chip__text">教授推荐</span></span>
+                                <span class="mdl-typography--body-1">
+                                        前端开发是个非常新的职业，对一些规范和最佳实践的研究都处于探索阶段。总有新的灵感和技术不时闪现出来，例如CSS sprite、负边距布局、
+                                        栅格布局等；各种JavaScript框架层出不穷，为整个前端开发领域注入了巨大的活力；浏览器大战也越来越白热化，跨浏览器兼容方案依然是五
+                                        花八门。为了满足“高可维护性”的需要，需要更深入、更系统地去掌握前端知识，这样才可能创建一个好的前端架构，保证代码的质量。
+                                    </span>
+                                <span class="mdl-typography--caption">6702人赞</span>
+                                <span class="mdl-typography--caption">2017/12/18</span>
+                                <i class="mdl-color-text--blue-grey-400 material-icons"
+                                   role="presentation">thumb_up</i>
+                                <i class="mdl-color-text--blue-grey-400 material-icons"
+                                   role="presentation">thumb_down</i>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield" style="margin: 0">
+                                <textarea class="mdl-textfield__input" type="text" rows="3" id="comment"></textarea>
+                                <label class="mdl-textfield__label" for="comment">写下你的评论</label>
+                            </div>
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                    id="submit">
+                                发表评论
+                            </button>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</main>
+</div>
+</div>
+<script src="js/script.js"></script>
+<script>
+    $('#submit').on('click', function () {
+        var data = {
+            message: '评论已提交，等待管理员审核',
+            timeout: 2000,
+            actionHandler: handler,
+            actionText: '确定'
+        }
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    });
+    $('#ask_submit').on('click', function () {
+        var data = {
+            message: '问题已提交，等待同学或老师回答',
+            timeout: 2000,
+            actionHandler: handler,
+            actionText: '确定'
+        }
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    });
+    $('#answer1_submit').on('click', function () {
+        var data = {
+            message: '回答已提交',
+            timeout: 2000,
+            actionHandler: handler,
+            actionText: '确定'
+        }
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    });
+    $('#answer2_submit').on('click', function () {
+        var data = {
+            message: '回答已提交',
+            timeout: 2000,
+            actionHandler: handler,
+            actionText: '确定'
+        }
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    });
+</script>
+
+</body>
+
+</html>

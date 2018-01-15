@@ -1,0 +1,510 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的账号 - iGenius</title>
+    <link href="css/material.purple-green.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/my.css">
+    <script defer src="js/material.min.js"></script>
+    <script src="js/jQuery.js"></script>
+    <style>
+        .wide-card {
+            margin: 10px 0 10px 20px;
+        }
+
+        .tab-content {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            height: auto;
+            min-height: 600px;
+        }
+
+        .vertical-mdl-tabs {
+            margin-top: 30px;
+        }
+
+        .vertical-mdl-tabs .mdl-tabs__tab-bar {
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            padding-bottom: 35px;
+            height: inherit;
+            border-bottom: none;
+            border-right: 1px solid rgba(10, 11, 49, 0.20);
+        }
+
+        .vertical-mdl-tabs .mdl-tabs__tab {
+            width: 100%;
+            height: 35px;
+            line-height: 35px;
+            box-sizing: border-box;
+            letter-spacing: 2px;
+        }
+
+        .vertical-mdl-tabs .mdl-tabs__tab:hover {
+            background: rgba(158, 158, 158, 0.34);
+            color: black;
+        }
+
+        .vertical-mdl-tabs.mdl-tabs.is-upgraded a.mdl-tabs__tab.is-active {
+            border-right: 3px solid rgb(105,240,174);
+        }
+
+        .vertical-mdl-tabs.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:after {
+            content: inherit;
+            height: 0;
+        }
+
+        .vertical-mdl-tabs.mdl-tabs.is-upgraded .mdl-tabs__panel.is-active, .mdl-tabs__panel {
+            padding: 0 30px;
+        }
+
+        .vertical-mdl-tabs.mdl-tabs .mdl-tabs__tab {
+            text-align: right;
+            border-right: 3px solid transparent;
+        }
+
+        .mdl-tabs__panel .mdl-textfield {
+            position: relative;
+            margin-left: 200px;
+            width: 400px;
+            display: block;
+        }
+
+        .mdl-tabs__panel .mdl-typography--headline {
+            margin-left: 180px;
+        }
+
+        .mdl-tabs__panel .mdl-radio {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+
+<body style="background-image: none">
+<div id="alert" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<div class="container">
+    <div class="mdl-card mdl-shadow--2dp user-card" style="display: none;z-index: 2;min-height: 0">
+        <div>
+            <div class="user-avatar-large">
+                <img src="images/icons/avatar.jpg" alt/>
+            </div>
+            <div style="display: inline-block;width: 160px;height: 96px;margin-left: 20px">
+                <span style="display: block;line-height: normal;font:bold 13px arial, sans-serif ; ">chensihao</span>
+                <span style="display: block;line-height: normal;font:13px arial, sans-serif;color: rgb(102,102,102) ;">20165009@stu.neu.edu.cn</span>
+                <div style="position: relative;top: 20px">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                            style="display: inline-block;line-height:28px;height: 32px;padding: 0 16px"
+                            onclick=myAccount()>我的账号
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised"
+                            onClick="window.location.href='index.html'"
+                            style="margin: auto;display: inline-block;line-height:28px;height: 32px;padding: 0">
+                        注销
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--waterfall" id="header" style="z-index: 0">
+            <div class="cover">
+                <!-- Top row, always visible -->
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <img src="images/icons/icon-white.png" alt class="icon-small">
+                    <span class="mdl-layout-title">我的账号</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <div id="search-bar" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+                        </div>
+                    </div>
+                    <div class="user-avatar">
+                        <i class="material-icons  mdl-list__item-avatar" onClick="location.href='login.html'">person</i>
+                    </div>
+                </div>
+                <div class=" mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link main this-page" href="index.html"
+                           style="border-bottom: 30px">首页</a>
+                        <a class="mdl-navigation__link schools" href="">所有课程</a>
+                        <a class="mdl-navigation__link forum" href="">合作院校</a>
+                        <a class="mdl-navigation__link plan" href="plan.html">课程规划</a>
+                        <a class="mdl-navigation__link help" href="">帮助</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                <a href="#scroll-tab-1" class="mdl-layout__tab is-active">我的课程</a>
+                <a href="#scroll-tab-2" class="mdl-layout__tab">愿望清单</a>
+                <a href="#scroll-tab-3" class="mdl-layout__tab">账户充值</a>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title drawer-title mdl-color--purple"><img src="images/icons/icon-white.png" class="icon-med" alt
+                                                                 style="top:15px;left: 7px"><span
+                        style="color: #FFFFFF; "><br>iGENIUS</span></span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">home</i>首页</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">list</i>所有课程</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">school</i>合作院校</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">add_shopping_cart</i>课程购买</a>
+                <a class="mdl-navigation__link my" href="my.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">credit_card</i>账户明细</a>
+                <a class="mdl-navigation__link plan" href="plan.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">group_work</i>课程规划</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">build</i>账户设置</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">share</i>合作推广</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">question_answer</i>帮助</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
+                    <div class="page-content tab-content">
+                        <h1 class="mdl-typography--display-1" style="color: #7cb342;
+                                position: absolute;right: 50px;top:0px;font-weight: bold">¥32.31</h1>
+                        <span class="mdl-typography--caption" style="color: rgb(108,108,108);
+                                position: absolute;right: 72px;top:64px">账户余额</span>
+                        <div class="wide-card mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #000;background-image: url('images/lessons/w1.jpg');">
+                                <h2 class="mdl-card__title-text">Web前端设计</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                已学20/40课时，将于2017年12月20日结束<span class="school-teacher-name">东北大学 王蓓蕾</span>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                                   onclick="window.location.href='lesson.html?id='+userID">继续学习</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">申请延期</a>
+                            </div>
+                        </div>
+                        <div class="wide-card mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #fff;background-image: url('images/lessons/w2.png');">
+                                <h2 class="mdl-card__title-text">通信概论</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                已学30/40课时，将于2017年12月31日结束<span class="school-teacher-name">东北大学 王蓓蕾</span>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                    继续学习
+                                </a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                申请延期
+                            </a>
+                            </div>
+                        </div>
+                        <div class="wide-card mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #fff;background-image: url('images/lessons/w3.jpg');">
+                                <h2 class="mdl-card__title-text">高等数学</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                已学80/80课时，已于2017年12月1日结束<span class="school-teacher-name">同济大学 李少华</span>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                    重新学习
+                                </a>
+                            </div>
+                        </div>
+                        <div class="wide-card mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #fff;background-image: url('images/lessons/w4.jpg');">
+                                <h2 class="mdl-card__title-text">大学物理</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                已学80/80课时，已于2017年12月7日结束<span class="school-teacher-name">东南大学 周雨青</span>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                    重新学习
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="mdl-layout__tab-panel" id="scroll-tab-2">
+                    <h1 class="mdl-typography--display-1" style="color: #7cb342;
+                                position: absolute;right: 50px;top:0px;font-weight: bold">¥32.31</h1>
+                    <span class="mdl-typography--caption" style="color: rgb(108,108,108);
+                                position: absolute;right: 72px;top:64px">账户余额</span>
+                    <div class="page-content tab-content">
+                        <div class="wide-card mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #fff;background-image: url('images/lessons/w5.jpg');">
+                                <h2 class="mdl-card__title-text">大学英语</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                将于2018年5月31日结束<span class="school-teacher-name">武汉大学 张莉</span>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">立即购买</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">查看详情</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">移除课程</a>
+                            </div>
+                        </div>
+                        <div class="wide-card mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #fff;background-image: url('images/lessons/w6.jpg');">
+                                <h2 class="mdl-card__title-text">日本传统文化</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                将于2017年6月31日结束<span class="school-teacher-name">早稻田大学 中村修二</span>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">立即购买</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">查看详情</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">移除课程</a>
+                            </div>
+                        </div>
+                        <div class="wide-card mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #fff;background-image: url('images/lessons/w7.png');">
+                                <h2 class="mdl-card__title-text">汇编语言</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                将于2017年6月31日结束<span class="school-teacher-name">清华大学 杨舒平</span>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">立即购买</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">查看详情</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">移除课程</a>
+                            </div>
+                        </div>
+                        <div class="wide-card mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #fff;background-image: url('images/lessons/w8.png');">
+                                <h2 class="mdl-card__title-text">软件工程导论</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                将于2018年4月31日结束<span class="school-teacher-name">东北大学 王蓓蕾</span>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">立即购买</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">查看详情</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">移除课程</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="mdl-layout__tab-panel" id="scroll-tab-3">
+                    <div class="page-content tab-content">
+                        <h1 class="mdl-typography--display-1" style="color: #7cb342;
+                                position: absolute;right: 50px;top:0px;font-weight: bold">¥32.31</h1>
+                        <span class="mdl-typography--caption" style="color: rgb(108,108,108);
+                                position: absolute;right: 72px;top:64px">账户余额</span>
+                        <div class="mdl-tabs vertical-mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell mdl-cell--2-col">
+                                    <div class="mdl-tabs__tab-bar">
+                                        <a href="#tab1-panel" class="mdl-tabs__tab is-active">信用卡</a>
+                                        <a href="#tab2-panel" class="mdl-tabs__tab">支付宝</a>
+                                        <a href="#tab3-panel" class="mdl-tabs__tab">微信</a>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--10-col">
+                                    <div class="mdl-tabs__panel is-active" id="tab1-panel">
+                                        <h5 class="mdl-typography--headline">填写付款人信息</h5>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" id="user-name">
+                                            <label class="mdl-textfield__label" for="user-name">姓名</label>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text"
+                                                   id="user-adress">
+                                            <label class="mdl-textfield__label"
+                                                   for="user-adress">账单地址</label>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" id="zip-code">
+                                            <label class="mdl-textfield__label" for="zip-code">邮编</label>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text"
+                                                   id="card-number">
+                                            <label class="mdl-textfield__label"
+                                                   for="card-number">银行卡号</label>
+                                        </div>
+                                        <h5 class="mdl-typography--headline">选择金额</h5>
+                                        <div style="margin-left: 200px">
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="credit-price-1">
+                                                <input type="radio" id="credit-price-1"
+                                                       class="mdl-radio__button" name="options" value="1"
+                                                       checked>
+                                                <span class="mdl-radio__label">50元</span>
+                                            </label>
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="credit-price-2">
+                                                <input type="radio" id="credit-price-2"
+                                                       class="mdl-radio__button" name="options" value="1">
+                                                <span class="mdl-radio__label">100元</span>
+                                            </label>
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="credit-price-3">
+                                                <input type="radio" id="credit-price-3"
+                                                       class="mdl-radio__button" name="options" value="1">
+                                                <span class="mdl-radio__label">200元</span>
+                                            </label>
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="credit-price-4">
+                                                <input type="radio" id="credit-price-4"
+                                                       class="mdl-radio__button" name="options" value="1">
+                                                <span class="mdl-radio__label">其它</span>
+                                            </label>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                                                 style="width: 96px;display: inline-block;margin-left: 0">
+                                                <input class="mdl-textfield__input" type="text"
+                                                       pattern="-?[0-9]*(\.[0-9]+)?"
+                                                       id="credit-price-other" style="width: 96px">
+                                                <label class="mdl-textfield__label"
+                                                       for="credit-price-other">输入金额</label>
+                                                <span class="mdl-textfield__error">Input is not a number!</span>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                                style="margin:20px 0px 20px 330px">使用信用卡付款
+                                        </button>
+                                    </div>
+                                    <div class="mdl-tabs__panel" id="tab2-panel">
+                                        <h5 class="mdl-typography--headline" style="margin-top: 100px">选择金额</h5>
+                                        <div style="margin-left: 200px">
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="alipay-price-1">
+                                                <input type="radio" id="alipay-price-1"
+                                                       class="mdl-radio__button" name="options" value="1"
+                                                       checked>
+                                                <span class="mdl-radio__label">50元</span>
+                                            </label>
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="alipay-price-2">
+                                                <input type="radio" id="alipay-price-2"
+                                                       class="mdl-radio__button" name="options" value="1">
+                                                <span class="mdl-radio__label">100元</span>
+                                            </label>
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="alipay-price-3">
+                                                <input type="radio" id="alipay-price-3"
+                                                       class="mdl-radio__button" name="options" value="1">
+                                                <span class="mdl-radio__label">200元</span>
+                                            </label>
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="alipay-price-4">
+                                                <input type="radio" id="alipay-price-4"
+                                                       class="mdl-radio__button" name="options" value="1">
+                                                <span class="mdl-radio__label">其它</span>
+                                            </label>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                                                 style="width: 96px;display: inline-block;margin-left: 0">
+                                                <input class="mdl-textfield__input" type="text"
+                                                       pattern="-?[0-9]*(\.[0-9]+)?"
+                                                       id="alipay-price-other" style="width: 96px">
+                                                <label class="mdl-textfield__label"
+                                                       for="credit-price-other">输入金额</label>
+                                                <span class="mdl-textfield__error">Input is not a number!</span>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                                style="margin:20px 0px 20px 330px">使用支付宝付款
+                                        </button>
+                                    </div>
+                                    <div class="mdl-tabs__panel" id="tab3-panel">
+                                        <h5 class="mdl-typography--headline" style="margin-top: 100px">选择金额</h5>
+                                        <div style="margin-left: 200px">
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="wechat-price-1">
+                                                <input type="radio" id="wechat-price-1"
+                                                       class="mdl-radio__button" name="options" value="1"
+                                                       checked>
+                                                <span class="mdl-radio__label">50元</span>
+                                            </label>
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="wechat-price-2">
+                                                <input type="radio" id="wechat-price-2"
+                                                       class="mdl-radio__button" name="options" value="1">
+                                                <span class="mdl-radio__label">100元</span>
+                                            </label>
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="wechat-price-3">
+                                                <input type="radio" id="wechat-price-3"
+                                                       class="mdl-radio__button" name="options" value="1">
+                                                <span class="mdl-radio__label">200元</span>
+                                            </label>
+                                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+                                                   for="wechat-price-4">
+                                                <input type="radio" id="wechat-price-4"
+                                                       class="mdl-radio__button" name="options" value="1">
+                                                <span class="mdl-radio__label">其它</span>
+                                            </label>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                                                 style="width: 96px;display: inline-block;margin-left: 0">
+                                                <input class="mdl-textfield__input" type="text"
+                                                       pattern="-?[0-9]*(\.[0-9]+)?"
+                                                       id="wechat-price-other" style="width: 96px">
+                                                <label class="mdl-textfield__label"
+                                                       for="credit-price-other">输入金额</label>
+                                                <span class="mdl-textfield__error">Input is not a number!</span>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                                style="margin:20px 0px 20px 330px">使用微信付款
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer class="mdl-color--purple">
+                    <div>
+                        <div style="width:211px;display: inline-block;float:left;margin-left: 20px">
+                            <img src="images/icons/icon-white.png" alt class="icon-med">
+                            <span class="mdl-typography--display-1 mdl-color-text--white"
+                                  style="margin-left: 20px">iGENIUS</span>
+                        </div>
+                        <div style='color: white;width: 350px;display: inline-block;margin-left: 18%;
+                        font-family: "Roboto", "Helvetica", "Arial", sans-serif; '>
+                            <div style="">The only way to do great work is to love what you do.</div>
+                            <div style="float: right">- Steve Jobs</div>
+                        </div>
+                        <div class="link-icons">
+                            <a href=""><img src="images/icons/wechat.png"></a>
+                            <a href=""><img src="images/icons/weibo.png"></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="js/script.js"></script>
+</body>
+
+</html>

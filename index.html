@@ -1,0 +1,1614 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>iGenius</title>
+    <link href="css/material.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <script defer src="js/material.min.js"></script>
+    <script src="js/jQuery.js"></script>
+    <style>
+
+        s {
+            color: #9E9E9E;
+        }
+
+        #turnimg, #turnimg img {
+            width: 900px;
+            height: 398px;
+        }
+
+        #turnimg {
+            position: relative;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        #imgs {
+            padding: 0;
+            margin: 0;
+            width: 30000px;
+            height: 398px;
+            position: absolute;
+            left: -900px;
+        }
+
+        /*底部圆点*/
+
+        #imgs li {
+            float: left;
+        }
+
+        #circles {
+            left: 377px;
+            height: 20px;
+            line-height: 20px;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+        }
+
+        #circles > li {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .circle {
+            background-color: black;
+        }
+
+        .currimg {
+            background-color: white;
+        }
+
+        /*图片上方的左右箭头*/
+
+        .arr {
+            width: 40px;
+            height: 60px;
+            line-height: 40px;
+            border: 0;
+            background-color: black;
+            border-radius: 2px;
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            opacity: 0.5;
+            display: none;
+            -webkit-transition: opacity 0.5s;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            -ms-transition: opacity 0.5s;
+            transition: opacity 0.5s;
+        }
+
+        #turnimg:hover .arr {
+            display: block;
+            cursor: pointer;
+        }
+
+        .left {
+            left: 10px;
+        }
+
+        .right {
+            right: 10px;
+        }
+
+        #leftarr, #rightarr {
+            margin: 10px 10px 10px 0;
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid white;
+            border-left: 2px solid white;
+            position: relative;
+            top: 13px;
+            left: 13px;
+        }
+
+        #leftarr {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        #rightarr {
+            -webkit-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -ms-transform: rotate(135deg);
+            -o-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+    </style>
+    <script>
+
+
+        function changeBgColor(id, color) {
+            var x = document.getElementById(id);
+            var y = document.getElementById("categories-title");
+            x.style.background = color;
+            y.style.background = color;
+        }
+
+        function changeColor(id, color) {
+            var x = document.getElementById(id);
+            x.style.color = color;
+        }
+
+    </script>
+</head>
+
+
+<body>
+<div id="alert" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<div class="container">
+    <div class="mdl-card mdl-shadow--2dp user-card" style="display: none;z-index: 2;min-height: 0">
+        <div>
+            <div class="user-avatar-large">
+                <img src="images/icons/avatar.jpg" alt/>
+            </div>
+            <div style="display: inline-block;width: 160px;height: 96px;margin-left: 20px">
+                <span style="display: block;line-height: normal;font:bold 13px arial, sans-serif ; ">chensihao</span>
+                <span style="display: block;line-height: normal;font:13px arial, sans-serif;color: rgb(102,102,102) ;">20165009@stu.neu.edu.cn</span>
+                <div style="position: relative;top: 20px">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                            style="display: inline-block;line-height:28px;height: 32px;padding: 0 16px"
+                            onclick=myAccount()>我的账号
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised"
+                            onClick="window.location.href='index.html'"
+                            style="margin: auto;display: inline-block;line-height:28px;height: 32px;padding: 0">
+                        注销
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--waterfall" id="header" style="z-index: 0">
+            <div class="cover">
+                <!-- Top row, always visible -->
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <img src="images/icons/icon-white.png" alt class="icon-small">
+                    <span class="mdl-layout-title">iGENIUS</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <div id="search-bar" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+                        </div>
+                    </div>
+                    <div class="user-avatar">
+                        <i class="material-icons  mdl-list__item-avatar" onClick="location.href='login.html'">person</i>
+                    </div>
+                </div>
+                <!-- Bottom row, not visible on scroll -->
+                <div class=" mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation -->
+                    <nav class="mdl-navigation">
+
+                        <a class="mdl-navigation__link main this-page" href="index.html"
+                           style="border-bottom: 30px">首页</a>
+                        <a class="mdl-navigation__link schools" href="">所有课程</a>
+                        <a class="mdl-navigation__link forum" href="">合作院校</a>
+                        <a class="mdl-navigation__link plan" href="plan.html">课程规划</a>
+                        <a class="mdl-navigation__link help" href="">帮助</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title drawer-title mdl-color--indigo"><img src="images/icons/icon-white.png"
+                                                                                   class="icon-med" alt
+                                                                                   style="top:15px;left: 7px"><span
+                        style="color: #FFFFFF; "><br>iGENIUS</span></span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">home</i>首页</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">list</i>所有课程</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">school</i>合作院校</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">add_shopping_cart</i>课程购买</a>
+                <a class="mdl-navigation__link my" href="my.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">credit_card</i>账户明细</a>
+                <a class="mdl-navigation__link plan" href="plan.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">group_work</i>课程规划</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">build</i>账户设置</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">share</i>合作推广</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">question_answer</i>帮助</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <div class="turnimg-section">
+                    <div class="mdl-shadow--2dp" id="turnimg">
+                        <!--轮播图片-->
+                        <ul id="imgs">
+                            <li><a href="#"><img src="images/banners/banner1.png" alt/></a></li>
+                            <li><a href="#"><img src="images/banners/banner1.png" alt/></a></li>
+                            <li><a href="#"><img src="images/banners/banner2.jpg" alt/></a></li>
+                            <li><a href="#"><img src="images/banners/banner3.jpg" alt/></a></li>
+                            <li><a href="#"><img src="images/banners/banner4.jpg" alt/></a></li>
+                            <li><a href="#"><img src="images/banners/banner1.png" alt/></a></li>
+                        </ul>
+                        <!--对应底部的圆点-->
+                        <ul id="circles">
+                            <li class="currimg" data-num="0"></li>
+                            <li class="circle" data-num="1"></li>
+                            <li class="circle" data-num="2"></li>
+                            <li class="circle" data-num="3"></li>
+                        </ul>
+                        <!--左右切换箭头-->
+                        <div class="arr left" id="arrL">
+                            <div id="leftarr"></div>
+                        </div>
+                        <div class="arr right" id="arrR">
+                            <div id="rightarr"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="continue-study-section" id="continue-study">
+                    <div class="box-line">
+                        <div class="mdl-typography--headline-color-contrast title"><span>继续学习</span></div>
+                        <div class="wide-card mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #000;background-image: url('images/lessons/w1.jpg');">
+                                <h2 class="mdl-card__title-text">Web前端设计</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                已学20/40课时，将于2017年12月20日结束<span class="school-teacher-name">东北大学 王蓓蕾</span>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                                   onclick="window.location.href='lesson.html?id='+userID">继续学习</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">申请延期</a>
+                            </div>
+                        </div>
+                        <div class="wide-card mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #fff;background-image: url('images/lessons/w2.png');">
+                                <h2 class="mdl-card__title-text">通信概论</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                已学30/40课时，将于2017年12月31日结束<span class="school-teacher-name">东北大学 王蓓蕾</span>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">继续学习</a>
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">申请延期</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hot-lessons-section">
+                    <div class="box-line">
+                        <div class="mdl-typography--headline-color-contrast title"><span>热门课程</span></div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s1.jpg')">
+                                <h2 class="mdl-card__title-text">数据结构</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">介绍数据组织方式和典型算法实现，培养高级程序设计技能<br><br>
+                                <div class="school-name">东北大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>42625</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥299</s>
+                                ¥199</a><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s2.jpg')">
+                                <h2 class="mdl-card__title-text">线性代数</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> 培养抽象思维能力，打下数学学习基础<br><br>
+                                <div class="school-name">华中科技大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>19450</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                免费</a></div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s13.jpg')">
+                                <h2 class="mdl-card__title-text">高等数学</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> 掌握微积分概念与应用，打下理工科学习基础<br>
+                                <br>
+                                <div class="school-name">四川大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>60862</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                ¥99</a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s3.jpg')">
+                                <h2 class="mdl-card__title-text">大学物理</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                运用物理知识解决实际问题，打下理工科学习基础<br><br>
+                                <div class="school-name">东南大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>27305</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥149</s>
+                                    免费</a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s4.jpg')">
+                                <h2 class="mdl-card__title-text">Java程序设计</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                打下Java程序设计基础，培养面向对象编程能力<br><br>
+                                <div class="school-name">同济大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>35028</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥189</s>
+                                    ¥169</a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-line">
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #000; background-image: url('images/lessons/s10.jpg')">
+                                <h2 class="mdl-card__title-text">大学计算机</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">学习最近计算机技术，培养创新思维能力<br>
+                                <br>
+                                <div class="school-name">北京理工大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>40724</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                免费</a></div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s7.jpg')">
+                                <h2 class="mdl-card__title-text">金融学</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> 全面了解现代金融学框架体系，建立金融分析思维与逻辑<br>
+                                <br>
+                                <div class="school-name">复旦大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>39168</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥399</s>
+                                ¥299</a><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s18.jpg')">
+                                <h2 class="mdl-card__title-text">人工智能原理</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> 人工智能的核心思想、基本理论，基本方法与部分应用<br>
+                                <br>
+                                <div class="school-name">北京大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>61084</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                免费</a></div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s14.jpg')">
+                                <h2 class="mdl-card__title-text">ACCA财务管理F9</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">掌握财务管理核心内容，系统准备ACCA考试<br>
+                                <br>
+                                <div class="school-name">上海财经大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>39566</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥249</s>
+                                ¥199<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a></a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #000; background-image: url('images/lessons/s11.jpg')">
+                                <h2 class="mdl-card__title-text">Web前端设计</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">从静态网页到动态交互，掌握前端设计技巧<br>
+                                <br>
+                                <div class="school-name">东北大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>85309</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                ¥99</a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="new-lessons-section">
+
+                    <div class="box-line">
+                        <div class="mdl-typography--headline-color-contrast title"><span>新开课程</span></div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s6.jpg')">
+                                <h2 class="mdl-card__title-text">职场沟通英语</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">掌握英文交流技巧，形成国际交流合作意识<br>
+                                <br>
+                                <div class="school-name">电子科技大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>10348</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                ¥139</a><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s12.jpg')">
+                                <h2 class="mdl-card__title-text">生命科学与伦理</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">掌握生命伦理的基本原则，分析生命发展带来的伦理问题<br>
+                                <br>
+                                <div class="school-name">上海交通大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>9340</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                免费</a></div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s5.jpg')">
+                                <h2 class="mdl-card__title-text">艺术导论</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">培养艺术素养和艺术常识，增强人文素质<br>
+                                <br>
+                                <div class="school-name">西安交通大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>8492</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥149</s>
+                                ¥99<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a></a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s9.jpg')">
+                                <h2 class="mdl-card__title-text">走进创业</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> 了解创业过程中面临的各种关键性问题和解决思路<br>
+                                <br>
+                                <div class="school-name">南京大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>7195</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥399</s>
+                                ¥349</a><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #000; background-image: url('images/lessons/s20.jpg')">
+                                <h2 class="mdl-card__title-text">结构力学</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> 了解各类超静定结构的受力性能及位移计算方法<br>
+                                <br>
+                                <div class="school-name">天津大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>4028</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥159</s>
+                                ¥99</a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-line">
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s16.jpg')">
+                                <h2 class="mdl-card__title-text">云计算导论</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">了解云计算关键技术、基础架构及各种主流解决方案<br>
+                                <br>
+                                <div class="school-name">清华大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>10348</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                ¥99</a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s17.jpg')">
+                                <h2 class="mdl-card__title-text">机器学习</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">跟随斯坦福大学著名教授学习机器学习基本概念和典型算法<br>
+                                <br>
+                                <div class="school-name">斯坦福大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>19724</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥399</s>
+                                ¥299</a><a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s18.jpg')">
+                                <h2 class="mdl-card__title-text">管理心理学</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> 帮助个人突破发展瓶颈，帮助组织提升管理效率<br>
+                                <br>
+                                <div class="school-name">北京师范大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>10946</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                ¥99</a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s19.jpg')">
+                                <h2 class="mdl-card__title-text">通信概论</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">了解通信领域基本概念，学习最新通信技术<br>
+                                <br>
+                                <div class="school-name">东北大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>13485</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥149</s>
+                                ¥99<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a></a>
+                            </div>
+                        </div>
+                        <div class="card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand"
+                                 style="color: #FFF; background-image: url('images/lessons/s15.jpg')">
+                                <h2 class="mdl-card__title-text">计算机组成原理</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> 了解计算机硬件结构，针对软件分析硬件需求<br>
+                                <br>
+                                <div class="school-name">华东师范大学</div>
+                                <div class="student-number"><i class="material-icons">perm_identity</i>9475</div>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥149</s>
+                                ¥99</a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="categories-section">
+                    <div>
+                        <div class="mdl-typography--headline-color-contrast title"><span
+                                id="categories-title">课程分类</span></div>
+                        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+            mdl-layout--fixed-tabs categories-window">
+                            <header class="mdl-layout__header tab-bar" id="tab-bar">
+                                <!-- Tabs -->
+                                <div class="mdl-layout__tab-bar mdl-js-ripple-effect tab-bar" id="tab-bar2"><a
+                                        href="#fixed-tab-1" class="mdl-layout__tab is-active"
+                                        onClick="changeBgColor('tab-bar','#3f51b5');changeBgColor('tab-bar2','#3f51b5')">计算机</a>
+                                    <a href="#fixed-tab-2" class="mdl-layout__tab"
+                                       onClick="changeBgColor('tab-bar','#03A9F4');changeBgColor('tab-bar2','#03A9F4')">经济管理</a>
+                                    <a href="#fixed-tab-3" class="mdl-layout__tab"
+                                       onClick="changeBgColor('tab-bar','#009688');changeBgColor('tab-bar2','#009688')">理学</a>
+                                    <!-- <!-- <a href="#fixed-tab-4" class="mdl-layout__tab" onClick="changeBgColor('tab-bar','#4CAF50');changeBgColor('tab-bar2','#4CAF50')">艺术设计</a> <a href="#fixed-tab-5" class="mdl-layout__tab" onClick="changeBgColor('tab-bar','#FF5722');changeBgColor('tab-bar2','#FF5722')">理学</a> --><a
+                                            href="#fixed-tab-6" class="mdl-layout__tab"
+                                            onClick="changeBgColor('tab-bar','#E91E63');changeBgColor('tab-bar2','#E91E63')">其它</a>
+                                </div>
+                            </header>
+                            <main class="mdl-layout__content">
+                                <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+                                    <div class="tab-content">
+                                        <div class="box-line">
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s15.jpg')">
+                                                    <h2 class="mdl-card__title-text">大学计算机</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">学习最近计算机技术，培养创新思维能力<br>
+                                                    <br>
+                                                    <div class="school-name">北京理工大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>40724
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s18.jpg')">
+                                                    <h2 class="mdl-card__title-text">人工智能原理</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 人工智能的核心思想、基本理论，基本方法与部分应用<br>
+                                                    <br>
+                                                    <div class="school-name">北京大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>61084
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #000; background-image: url('images/lessons/s11.jpg')">
+                                                    <h2 class="mdl-card__title-text">Web前端设计</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">从静态网页到动态交互，掌握前端设计技巧<br>
+                                                    <br>
+                                                    <div class="school-name">东北大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>85309
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    ¥99</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s1.jpg')">
+                                                    <h2 class="mdl-card__title-text">数据结构</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">
+                                                    介绍数据组织方式和典型算法实现，培养高级程序设计技能<br><br>
+                                                    <div class="school-name">东北大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>42625
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥299</s>
+                                                    ¥199</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s4.jpg')">
+                                                    <h2 class="mdl-card__title-text">Java程序设计</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">
+                                                    打下Java程序设计基础，培养面向对象编程能力<br><br>
+                                                    <div class="school-name">同济大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>35028
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border">
+                                                    <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥189</s>
+                                                        ¥169</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box-line">
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s16.jpg')">
+                                                    <h2 class="mdl-card__title-text">云计算导论</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">了解云计算关键技术、基础架构及各种主流解决方案<br>
+                                                    <br>
+                                                    <div class="school-name">清华大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>10348
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    ¥99</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s17.jpg')">
+                                                    <h2 class="mdl-card__title-text">机器学习</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">跟随斯坦福大学著名教授学习机器学习基本概念和典型算法<br>
+                                                    <br>
+                                                    <div class="school-name">斯坦福大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>19724
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥399</s>
+                                                    ¥299</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s19.jpg')">
+                                                    <h2 class="mdl-card__title-text">通信概论</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">了解通信领域基本概念，学习最新通信技术<br>
+                                                    <br>
+                                                    <div class="school-name">东北大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>13485
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥149</s>
+                                                    ¥99<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s15.jpg')">
+                                                    <h2 class="mdl-card__title-text">计算机组成原理</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 了解计算机硬件结构，针对软件分析硬件需求<br>
+                                                    <br>
+                                                    <div class="school-name">华东师范大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>9475
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥149</s>
+                                                    ¥99</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp "
+                                                 onMouseOver="changeColor('more1','#E91E63');changeColor('plus1','#E91E63')"
+                                                 onMouseOut="changeColor('more1','rgba(0,0,0,.54)');changeColor('plus1','rgba(0,0,0,.54)')">
+                                                <i class="material-icons"
+                                                   style="display: block;margin:60px 60px 21px 60px; font-size: 100px;color: rgba(0,0,0,.54)"
+                                                   id="plus1">add</i><span
+                                                    style="color: rgba(0,0,0,.54);padding: 0 78px"
+                                                    id="more1">查看更多</span></div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+                                    <div class="tab-content">
+                                        <div class="box-line">
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s9.jpg')">
+                                                    <h2 class="mdl-card__title-text">走进创业</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 了解创业过程中面临的各种关键性问题和解决思路<br>
+                                                    <br>
+                                                    <div class="school-name">南京大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>7195
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥399</s>
+                                                    ¥349</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s14.jpg')">
+                                                    <h2 class="mdl-card__title-text">ACCA财务管理F9</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">掌握财务管理核心内容，系统准备ACCA考试<br>
+                                                    <br>
+                                                    <div class="school-name">上海财经大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>39566
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥249</s>
+                                                    ¥199<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s7.jpg')">
+                                                    <h2 class="mdl-card__title-text">金融学</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 全面了解现代金融学框架体系，建立金融分析思维与逻辑<br>
+                                                    <br>
+                                                    <div class="school-name">复旦大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>39168
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥399</s>
+                                                    ¥299</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s22.jpg')">
+                                                    <h2 class="mdl-card__title-text">风险投资</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 掌握创业企业融资要点，建立经济管理思维，树立契约意识<br>
+                                                    <br>
+                                                    <div class="school-name">电子科技大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>5931
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥299</s>
+                                                    ¥199</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #000; background-image: url('images/lessons/s23.jpg')">
+                                                    <h2 class="mdl-card__title-text">运筹学</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 学会使用数学模型求解，用优化方法解决实际问题<br>
+                                                    <br>
+                                                    <div class="school-name">中央财经大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>10469
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    ¥149</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box-line">
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #000; background-image: url('images/lessons/s25.jpg')">
+                                                    <h2 class="mdl-card__title-text">管理学</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">树立现代管理的思想观念，培养管理者素质<br>
+                                                    <br>
+                                                    <div class="school-name">南京大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>4072
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥249</s>
+                                                    ¥199<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s26.jpg')">
+                                                    <h2 class="mdl-card__title-text">会计学原理</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 掌握会计学基本概念，为会计专业学习打下基础<br>
+                                                    <br>
+                                                    <div class="school-name">厦门大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>7193
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥299</s>
+                                                    ¥199</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s27.jpg')">
+                                                    <h2 class="mdl-card__title-text">博弈论</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 理性分析事物，最大限度预测他人反应，规划自身合理行动<br>
+                                                    <br>
+                                                    <div class="school-name">吉林大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>3942
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥399</s>
+                                                    ¥299</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s28.jpg')">
+                                                    <h2 class="mdl-card__title-text">市场营销进阶</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 开拓全球化视野，树立科学营销理念<br>
+                                                    <br>
+                                                    <div class="school-name">北京大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>18394
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp "
+                                                 onMouseOver="changeColor('more2','#E91E63');changeColor('plus2','#E91E63')"
+                                                 onMouseOut="changeColor('more2','rgba(0,0,0,.54)');changeColor('plus2','rgba(0,0,0,.54)')">
+                                                <i class="material-icons"
+                                                   style="display: block;margin:60px 60px 21px 60px; font-size: 100px;color: rgba(0,0,0,.54)"
+                                                   id="plus2">add</i><span
+                                                    style="color: rgba(0,0,0,.54);padding: 0 78px"
+                                                    id="more2">查看更多</span></div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+                                    <div class="tab-content">
+                                        <div class="box-line">
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #000; background-image: url('images/lessons/s20.jpg')">
+                                                    <h2 class="mdl-card__title-text">结构力学</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 了解各类超静定结构的受力性能及位移计算方法<br>
+                                                    <br>
+                                                    <div class="school-name">天津大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>4028
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥159</s>
+                                                    ¥99</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s3.jpg')">
+                                                    <h2 class="mdl-card__title-text">大学物理</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 运用物理知识解决实际问题，打下理工科学习基础<br>
+                                                    <br>
+                                                    <div class="school-name">东南大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>27305
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥149</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s13.jpg')">
+                                                    <h2 class="mdl-card__title-text">高等数学</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 掌握微积分概念与应用，打下理工科学习基础<br>
+                                                    <br>
+                                                    <div class="school-name">四川大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>60862
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    ¥99</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s2.jpg')">
+                                                    <h2 class="mdl-card__title-text">线性代数</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 培养抽象思维能力，打下数学学习基础<br>
+                                                    <br>
+                                                    <div class="school-name">华中科技大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>19450
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s24.jpg')">
+                                                    <h2 class="mdl-card__title-text">量子物理</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 培养科学世界观和思维方法，提高科学素质和解决问题能力<br>
+                                                    <br>
+                                                    <div class="school-name">国防科技大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>10468
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                                    免费</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="box-line">
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s21.jpg')">
+                                                    <h2 class="mdl-card__title-text">天文学</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 系统掌握天文知识，熟习天体运动规律<br>
+                                                    <br>
+                                                    <div class="school-name">南京大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>7921
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    ¥149</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s29.jpg')">
+                                                    <h2 class="mdl-card__title-text">数学建模</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 运用类比方法，锻炼创新思维，用数学解决实际问题<br>
+                                                    <br>
+                                                    <div class="school-name">厦门大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>63914
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    99</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s31.jpg')">
+                                                    <h2 class="mdl-card__title-text">概率论</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">用概率论的思想处理随机事件,培养分析数据的能力 <br>
+                                                    <br>
+                                                    <div class="school-name">浙江大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>16935
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s32.jpg')">
+                                                    <h2 class="mdl-card__title-text">数学分析</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 提高数学修养和数学学习能力，打好数学理论基础<br>
+                                                    <br>
+                                                    <div class="school-name">中国科学技术大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>32469
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp "
+                                                 onMouseOver="changeColor('more3','#E91E63');changeColor('plus3','#E91E63')"
+                                                 onMouseOut="changeColor('more3','rgba(0,0,0,.54)');changeColor('plus3','rgba(0,0,0,.54)')">
+                                                <i class="material-icons"
+                                                   style="display: block;margin:60px 60px 21px 60px; font-size: 100px;color: rgba(0,0,0,.54)"
+                                                   id="plus3">add</i><span
+                                                    style="color: rgba(0,0,0,.54);padding: 0 78px"
+                                                    id="more3">查看更多</span></div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!--more tabs
+                                    <section class="mdl-layout__tab-panel" id="fixed-tab-4">
+                                        <div class="tab-content"></div>
+                                    </section>
+                                    <section class="mdl-layout__tab-panel" id="fixed-tab-5">
+                                        <div class="tab-content"></div>
+                                    </section>
+                                -->
+                                <section class="mdl-layout__tab-panel" id="fixed-tab-6">
+                                    <div class="tab-content">
+                                        <div class="box-line">
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s18.jpg')">
+                                                    <h2 class="mdl-card__title-text">管理心理学</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 帮助个人突破发展瓶颈，帮助组织提升管理效率<br>
+                                                    <br>
+                                                    <div class="school-name">北京师范大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>10946
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    ¥99</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s6.jpg')">
+                                                    <h2 class="mdl-card__title-text">职场沟通英语</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">掌握英文交流技巧，形成国际交流合作意识<br>
+                                                    <br>
+                                                    <div class="school-name">电子科技大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>10348
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    ¥139</a><a
+                                                        class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s12.jpg')">
+                                                    <h2 class="mdl-card__title-text">生命科学与伦理</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">掌握生命伦理的基本原则，分析生命发展带来的伦理问题<br>
+                                                    <br>
+                                                    <div class="school-name">上海交通大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>9340
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s5.jpg')">
+                                                    <h2 class="mdl-card__title-text">艺术导论</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">培养艺术素养和艺术常识，增强人文素质<br>
+                                                    <br>
+                                                    <div class="school-name">西安交通大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>8492
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥149</s>
+                                                    ¥99<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #000; background-image: url('images/lessons/s33.jpg')">
+                                                    <h2 class="mdl-card__title-text">中国哲学史</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">感触中国哲学的生命之流和古今之变，把握其基本线索<br>
+                                                    <br>
+                                                    <div class="school-name">武汉大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>18304
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥149</s>
+                                                    ¥99<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a></a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="box-line">
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s34.jpg')">
+                                                    <h2 class="mdl-card__title-text">平面艺术设计</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text"> 掌握二维图像设计基础，学习图像处理技巧<br>
+                                                    <br>
+                                                    <div class="school-name">华中科技大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>5927
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s35.jpg')">
+                                                    <h2 class="mdl-card__title-text">静态网页设计</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">学习网页设计基础，领悟网页设计之妙<br>
+                                                    <br>
+                                                    <div class="school-name">西安电子科技大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>8407
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s36.jpg')">
+                                                    <h2 class="mdl-card__title-text">人物画进阶</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">学习人物画的构图方式，熟练掌握各种绘画技巧的使用<br>
+                                                    <br>
+                                                    <div class="school-name">清华大学美术学院</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>3778
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥99</s>
+                                                    免费</a></div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp">
+                                                <div class="mdl-card__title mdl-card--expand"
+                                                     style="color: #FFF; background-image: url('images/lessons/s5.jpg')">
+                                                    <h2 class="mdl-card__title-text">西方文明史</h2>
+                                                </div>
+                                                <div class="mdl-card__supporting-text">掌握世界历史基本知识，加深对当今世界的认识<br>
+                                                    <br>
+                                                    <div class="school-name">中国人民大学</div>
+                                                    <div class="student-number"><i
+                                                            class="material-icons">perm_identity</i>7246
+                                                    </div>
+                                                </div>
+                                                <div class="mdl-card__actions mdl-card--border"><a
+                                                        class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect"><s>¥199</s>
+                                                    ¥99<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">免费试听</a></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-square mdl-card mdl-shadow--2dp "
+                                                 onMouseOver="changeColor('more6','#E91E63');changeColor('plus6','#E91E63')"
+                                                 onMouseOut="changeColor('more6','rgba(0,0,0,.54)');changeColor('plus6','rgba(0,0,0,.54)')">
+                                                <i class="material-icons"
+                                                   style="display: block;margin:60px 60px 21px 60px; font-size: 100px;color: rgba(0,0,0,.54)"
+                                                   id="plus6">add</i><span
+                                                    style="color: rgba(0,0,0,.54);padding: 0 78px"
+                                                    id="more6">查看更多</span></div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="lesson-packages-section">
+                <div class="box-line">
+                        <div class="mdl-typography--headline-color-contrast title"><span>精品组合</span></div>
+                        <div class="card-long mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand">
+                                <h2 class="mdl-card__title-text">Update</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis. </div>
+                            <div class="mdl-card__actions mdl-card--border"> <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> View Updates </a></div>
+                        </div>
+                        <div class="card-long mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand">
+                                <h2 class="mdl-card__title-text">Update</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis. </div>
+                            <div class="mdl-card__actions mdl-card--border"> <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> View Updates </a></div>
+                        </div>
+                        <div class="card-long mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand">
+                                <h2 class="mdl-card__title-text">Update</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis. </div>
+                            <div class="mdl-card__actions mdl-card--border"> <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> View Updates </a></div>
+                        </div>
+                        <div class="card-long mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand">
+                                <h2 class="mdl-card__title-text">Update</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis. </div>
+                            <div class="mdl-card__actions mdl-card--border"> <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> View Updates </a></div>
+                        </div>
+                        <div class="card-long mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand">
+                                <h2 class="mdl-card__title-text">Update</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis. </div>
+                            <div class="mdl-card__actions mdl-card--border"> <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> View Updates </a></div>
+                        </div>
+                    </div>
+                </div>
+-->
+                <div class="teachers-section">
+                    <div style="position: fixed;top:0;z-index:-1;height: 0;width: 0"></div>
+                    <div class="teachers-line">
+                        <div class="mdl-typography--headline-color-contrast title"><span>签约名师</span></div>
+                        <div class="teacher-card mdl-card mdl-shadow--2dp">
+                            <div class="teacher-card__title-yellow">
+                                <div class="avatar">
+                                    <img src="images/people/dengminghua.jpg" alt/>
+                                </div>
+                                <div class="teacher-name">
+                                    <span>邓明华</span>
+                                </div>
+                                <div class="teacher-position">
+                                    <span>北京大学数学科学学院教授</span>
+                                </div>
+                            </div>
+                            <div class="teacher-card__main">
+                                <p>1987-1998年就读于北京大学数学系，分获学士、硕士和理学博士学位，从98年4月留校工作至今，2009年担任美国耶鲁大学访问教授。 </p>
+                            </div>
+                            <div class="teacher-card__supporting mdl-card__actions">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">数学建模
+                                </button>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">数值分析
+                                </button>
+                            </div>
+                            <div class="teacher-card__buttons mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> 更多课程 </a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> 预约提问 </a>
+                            </div>
+                        </div>
+                        <div class="teacher-card mdl-card mdl-shadow--2dp">
+                            <div class="teacher-card__title-blue">
+                                <div class="avatar"><img src="images/people/andrewng.jpg" alt/></div>
+                                <div class="teacher-name"><span>Andrew Ng</span></div>
+                                <div class="teacher-position"><span>斯坦福大学计算机系副教授</span></div>
+                            </div>
+                            <div class="teacher-card__main">
+                                <p>斯坦福人工智能实验室主任，2011年在谷歌创建谷歌大脑项目，以通过分布式集群计算机开发超大规模的人工神经网络,2014年担任百度公司首席科学家。</p>
+                            </div>
+                            <div class="teacher-card__supporting mdl-card__actions">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">机器学习
+                                </button>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">深度学习
+                                </button>
+                            </div>
+                            <div class="teacher-card__buttons mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> 更多课程 </a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> 预约提问 </a>
+                            </div>
+                        </div>
+                        <div class="teacher-card mdl-card mdl-shadow--2dp">
+                            <div class="teacher-card__title-pink">
+                                <div class="avatar"><img src="images/people/wangbeilei.jpeg" alt/></div>
+                                <div class="teacher-name"><span>王蓓蕾</span></div>
+                                <div class="teacher-position"><span>东北大学软件学院讲师</span></div>
+                            </div>
+                            <div class="teacher-card__main">
+                                <p>2001年毕业于大连理工大学电子工程专业，2004年起任教于东北大学，主要对互联网行业大学生课外培养、创新创业工作、职业生涯规划进行研究和实践。</p>
+                            </div>
+                            <div class="teacher-card__supporting mdl-card__actions">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">通信概论
+                                </button>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Web前端
+                                </button>
+                            </div>
+                            <div class="teacher-card__buttons mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> 更多课程 </a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> 预约提问 </a>
+                            </div>
+                        </div>
+                        <div class="teacher-card mdl-card mdl-shadow--2dp">
+                            <div class="teacher-card__title-green">
+                                <div class="avatar"><img src="images/people/lixue.jpg" alt/></div>
+                                <div class="teacher-name"><span>李雪</span></div>
+                                <div class="teacher-position"><span>哈工大外国语学院教授</span></div>
+                            </div>
+                            <div class="teacher-card__main">
+                                <p>英语语言文学博士,哈尔滨工业大学硕士生导师，主持、参加10余项国家级和省级教学、科研项目；获得黑龙江省教学成果奖一等奖1项，二等奖1项。</p>
+                            </div>
+                            <div class="teacher-card__supporting mdl-card__actions">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">通用英语
+                                </button>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">英语写作
+                                </button>
+                            </div>
+                            <div class="teacher-card__buttons mdl-card__actions mdl-card--border"><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> 更多课程 </a><a
+                                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> 预约提问 </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <footer class="mdl-color--indigo">
+                    <div>
+                        <div style="width:211px;display: inline-block;float:left;margin-left: 20px">
+                            <img src="images/icons/icon-white.png" alt class="icon-med">
+                            <span class="mdl-typography--display-1 mdl-color-text--white"
+                                  style="margin-left: 20px">iGENIUS</span>
+                        </div>
+                        <div style='color: white;width: 350px;display: inline-block;margin-left: 18%;
+                        font-family: "Roboto", "Helvetica", "Arial", sans-serif; '>
+                            <div style="">The only way to do great work is to love what you do.</div>
+                            <div style="float: right">- Steve Jobs</div>
+                        </div>
+                        <div class="link-icons">
+                            <a href=""><img src="images/icons/wechat.png"></a>
+                            <a href=""><img src="images/icons/weibo.png"></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </main>
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored shopping-button"
+                style="position: fixed;right: 50px;bottom: 50px;z-index: 100"
+                onclick="window.location.href='my.html?id='+userID">
+            <i class="material-icons">shopping_cart</i>
+        </button>
+    </div>
+</div>
+<script src="js/script.js"></script>
+<script>
+
+    var doc = document;
+    var horse = function () {
+        var imgslist = doc.getElementById("imgs"),
+            imgs = imgslist.getElementsByTagName("li"),
+            circlelist = doc.getElementById("circles"),
+            circles = circlelist.getElementsByTagName("li"),
+            len = imgs.length,
+            imgwidth = imgs[0].offsetWidth,
+            totalwidth = imgwidth * (len - 1) * (-1),
+            varyleft = imgslist.offsetLeft,
+            j = 0,
+            timer;
+
+        function animate(elem, varywidth) {
+            var curleft = imgslist.offsetLeft,
+                time = 20, //无动画切换一张图片所需时间
+                animatetime = 400, //有动画时切换一张图片所需时间
+                intervaltime = animatetime / time, //每次切换speed距离所需的时间，
+                speed = (varywidth - curleft) / 20, //每次定时切换的距离
+                i = 0, //判断是否切换完成
+                t = setInterval(function () {
+                    curleft += speed;
+                    elem.style.left = curleft + "px";
+                    i++;
+                    if (i === time) {
+                        clearInterval(t);
+                    }
+                }, intervaltime); //每隔intervaltime时间移动speed距离，总共移动20次，即总时间为animatetime
+        }
+
+        function nextImg() {
+            circles[j].className = "circle";
+            if (varyleft <= totalwidth) { //显示最后一张时，瞬间切换到第二张
+                imgslist.style.left = -imgwidth + "px";
+                varyleft = -imgwidth;
+                j++;
+            } else {
+                j++;
+                if (j === 4) {
+                    j = 0;
+                }
+            }
+            varyleft -= imgwidth; //每次移动后的left的值
+            animate(imgslist, varyleft);
+            circles[j].className = "currimg";
+        }
+
+        function prevImg() {
+            circles[j].className = "circle";
+            if (varyleft >= -imgwidth) {
+                imgslist.style.left = totalwidth + "px";
+                varyleft = totalwidth;
+                j = 3;
+            } else {
+                j--;
+                if (j < 0) {
+                    j = 3;
+                }
+            }
+            varyleft += imgwidth; //每次移动后的left的值
+            animate(imgslist, varyleft);
+            circles[j].className = "currimg";
+        }
+
+        function startAutochange() {
+            timer = setInterval(nextImg, 3000);
+        }
+
+        function stopAutochange() {
+            clearInterval(timer);
+        }
+
+        function dotimg(event) {
+            var e = event || window.event,
+                target = e.target || e.srcElement,
+                num;
+            if (target.tagName.toLowerCase() === "li") {
+                num = parseInt(target.getAttribute("data-num"));
+                varyleft = imgwidth * (num + 1) * (-1);
+                animate(imgslist, varyleft);
+                for (var k = 0; k < len - 2; k++) {
+                    circles[k].className = "circle";
+                }
+                target.className = "currimg";
+                j = num;
+            }
+        }
+
+        return {
+            previmg: prevImg,
+            nextimg: nextImg,
+            dotclick: dotimg,
+            startauto: startAutochange,
+            stopauto: stopAutochange
+
+        }
+    }();
+    window.onload = function () {
+        horse.startauto();
+    };
+    doc.getElementById("arrR").addEventListener("click", horse.nextimg, false);
+    doc.getElementById("arrL").addEventListener("click", horse.previmg, false);
+    doc.getElementById("circles").addEventListener("click", horse.dotclick, false);
+    doc.getElementById("turnimg").addEventListener("mouseover", horse.stopauto, false);
+    doc.getElementById("turnimg").addEventListener("mouseout", horse.startauto, false);
+
+</script>
+</body>
+
+</html>

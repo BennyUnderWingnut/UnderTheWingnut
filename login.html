@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录 - iGenius</title>
+    <link rel="stylesheet" href="css/icons.css">
+    <link href="css/fonts.css" rel="stylesheet"/>
+    <script src="js/jQuery.js"></script>
+    <link href="css/login.css" rel="stylesheet">
+    <script src="js/login.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/material.deep_purple-amber.min.css"/>
+    <script defer src="js/material.min.js"></script>
+</head>
+
+<body>
+<div id="alert" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<div class="container">
+    <div class="mdl-card mdl-shadow--2dp user-card" style="display: none;z-index: 2;min-height: 0">
+        <div>
+            <div class="user-avatar-large">
+                <img src="images/icons/avatar.jpg" alt/>
+            </div>
+            <div style="display: inline-block;width: 160px;height: 96px;margin-left: 20px">
+                <span style="display: block;line-height: normal;font:bold 13px arial, sans-serif ; ">chensihao</span>
+                <span style="display: block;line-height: normal;font:13px arial, sans-serif;color: rgb(102,102,102) ;">20165009@stu.neu.edu.cn</span>
+                <div style="position: relative;top: 20px">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                            style="display: inline-block;line-height:28px;height: 32px;padding: 0 16px">我的账号
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised"
+                            onClick="window.location.href='index.html'"
+                            style="margin: auto;display: inline-block;line-height:28px;height: 32px;padding: 0">
+                        注销
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--waterfall" id="header" style="z-index: 0">
+            <div class="cover">
+                <!-- Top row, always visible -->
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <img src="images/icons/icon-white.png" alt class="icon-small">
+                    <span class="mdl-layout-title">登录</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <div id="search-bar" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+                        </div>
+                    </div>
+                    <div class="user-avatar">
+                        <i class="material-icons  mdl-list__item-avatar" onClick="location.href='login.html'">person</i>
+                    </div>
+                </div>
+                <!-- Bottom row, not visible on scroll -->
+                <div class=" mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation -->
+                    <nav class="mdl-navigation">
+
+                        <a class="mdl-navigation__link main this-page" href="index.html"
+                           style="border-bottom: 30px">首页</a>
+                        <a class="mdl-navigation__link schools" href="">所有课程</a>
+                        <a class="mdl-navigation__link forum" href="">合作院校</a>
+                        <a class="mdl-navigation__link plan" href="plan.html">课程规划</a>
+                        <a class="mdl-navigation__link help" href="">帮助</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title drawer-title mdl-color--deep-purple"><img
+                        src="images/icons/icon-white.png" class="icon-med" alt
+                        style="top:15px;left: 7px"><span
+                        style="color: #FFFFFF; "><br>iGENIUS</span></span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">home</i>首页</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">list</i>所有课程</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">school</i>合作院校</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">add_shopping_cart</i>课程购买</a>
+                <a class="mdl-navigation__link my" href="my.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">credit_card</i>账户明细</a>
+                <a class="mdl-navigation__link plan" href="plan.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">group_work</i>课程规划</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">build</i>账户设置</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">share</i>合作推广</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">question_answer</i>帮助</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <div class="materialContainer">
+                    <div class="box mdl-shadow--2dp">
+
+                        <div class="login-title">登录</div>
+
+                        <div class="input">
+                            <label for="name">用户名</label>
+                            <input type="text" name="name" id="name">
+                            <span class="spin"></span>
+                        </div>
+
+                        <div class="input">
+                            <label for="pass">密码</label>
+                            <input type="password" name="pass" id="pass">
+                            <span class="spin"></span>
+                        </div>
+
+                        <div class="button login">
+                            <button><span>Go</span> <i class="fa fa-check"></i></button>
+                        </div>
+
+
+                    </div>
+                    <div class="overbox">
+                        <div class="material-button alt-2 mdl-shadow--2dp"><span class="shape"></span></div>
+
+                        <div class="login-title">注册</div>
+
+                        <div class="input">
+                            <label for="regname">用户名</label>
+                            <input type="text" name="regname" id="regname">
+                            <span class="spin"></span>
+                        </div>
+
+                        <div class="input">
+                            <label for="regpass">密码</label>
+                            <input type="password" name="regpass" id="regpass">
+                            <span class="spin"></span>
+                        </div>
+
+                        <div class="input">
+                            <label for="reregpass">确认密码</label>
+                            <input type="password" name="reregpass" id="reregpass">
+                            <span class="spin"></span>
+                        </div>
+
+                        <div class="button">
+                            <button><span>下一步</span></button>
+                        </div>
+
+
+                    </div>
+                </div>
+                <footer class="mdl-color--deep-purple">
+                    <div>
+                        <div style="width:211px;display: inline-block;float:left;margin-left: 20px">
+                            <img src="images/icons/icon-white.png" alt class="icon-med">
+                            <span class="mdl-typography--display-1 mdl-color-text--white"
+                                  style="margin-left: 20px">iGENIUS</span>
+                        </div>
+                        <div style='color: white;width: 350px;display: inline-block;margin-left: 17%;
+                        font-family: "Roboto", "Helvetica", "Arial", sans-serif; '>
+                            <div style="">The only way to do great work is to love what you do.</div>
+                            <div style="float: right">- Steve Jobs</div>
+                        </div>
+                        <div class="link-icons">
+                            <a href=""><img src="images/icons/wechat.png"></a>
+                            <a href=""><img src="images/icons/weibo.png"></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="js/script.js"></script>
+</body>
+
+</html>

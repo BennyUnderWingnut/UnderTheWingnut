@@ -1,0 +1,297 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Web前端设计 - iGenius</title>
+    <link rel="stylesheet" href="css/material.teal-yellow.min.css"/>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/my.css">
+    <script defer src="js/material.min.js"></script>
+    <script src="js/jQuery.js"></script>
+    <script defer src="mdl-stepper-master/stepper.min.js"></script>
+    <link rel="stylesheet" href="mdl-stepper-master/stepper.min.css">
+    <style>
+        .mdl-step__actions {
+            height: 0;
+            max-width: 0;
+        }
+
+        .mdl-step__content > div > img {
+            width: 360px;
+            height: 200px;
+            margin: 0 30px 10px 40px;
+        }
+
+        .mdl-step__content > div > div {
+            display: inline-block;
+            width: 684px;
+            padding: 20px;
+        }
+
+        .mdl-step__content > div > div > div {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .mdl-step__content .mdl-typography--body-1 {
+            display: block;
+        }
+
+        .checked-mark {
+            margin-left: 10px;
+            width: 24px;
+            height: 24px;
+        }
+
+        .mdl-step__content .mdl-navigation__link {
+            margin-right: 20px;
+            color: black;
+            font-size: 24px;
+            line-height: 32px
+        }
+
+        hr {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+
+<body style="background-image: none">
+<div id="alert" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<div class="container">
+    <div class="mdl-card mdl-shadow--2dp user-card" style="display: none;z-index: 2;min-height: 0">
+        <div>
+            <div class="user-avatar-large">
+                <img src="images/icons/avatar.jpg" alt/>
+            </div>
+            <div style="display: inline-block;width: 160px;height: 96px;margin-left: 20px">
+                <span style="display: block;line-height: normal;font:bold 13px arial, sans-serif ; ">chensihao</span>
+                <span style="display: block;line-height: normal;font:13px arial, sans-serif;color: rgb(102,102,102) ;">20165009@stu.neu.edu.cn</span>
+                <div style="position: relative;top: 20px">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                            style="display: inline-block;line-height:28px;height: 32px;padding: 0 16px"
+                            onclick=myAccount()>我的账号
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised"
+                            onClick="window.location.href='index.html'"
+                            style="margin: auto;display: inline-block;line-height:28px;height: 32px;padding: 0">
+                        注销
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--waterfall" id="header" style="z-index: 0">
+            <div class="cover">
+                <div class="mdl-layout__header-row">
+                    <img src="images/icons/icon-white.png" alt class="icon-small">
+                    <span class="mdl-layout-title">Web前端设计</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <div id="search-bar" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+                        </div>
+                    </div>
+                    <div class="user-avatar">
+                        <i class="material-icons  mdl-list__item-avatar" onClick="location.href='login.html'">person</i>
+                    </div>
+                </div>
+                <div class=" mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link main this-page" href="index.html"
+                           style="border-bottom: 30px">首页</a>
+                        <a class="mdl-navigation__link schools" href="">所有课程</a>
+                        <a class="mdl-navigation__link forum" href="">合作院校</a>
+                        <a class="mdl-navigation__link plan" href="plan.html">课程规划</a>
+                        <a class="mdl-navigation__link help" href="">帮助</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title drawer-title mdl-color--teal"><img src="images/icons/icon-white.png"
+                                                                                 class="icon-med" alt
+                                                                                 style="top:15px;left: 7px"><span
+                        style="color: #FFFFFF; "><br>iGENIUS</span></span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">home</i>首页</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">list</i>所有课程</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">school</i>合作院校</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">add_shopping_cart</i>课程购买</a>
+                <a class="mdl-navigation__link my" href="my.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">credit_card</i>账户明细</a>
+                <a class="mdl-navigation__link plan" href="plan.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">group_work</i>课程规划</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">build</i>账户设置</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">share</i>合作推广</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">question_answer</i>帮助</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+                    <div class="mdl-layout__drawer">
+                        <a class="mdl-layout-title mdl-navigation__link" href="lesson.html">Web前端设计</a>
+                        <nav class="mdl-navigation">
+                            <a class="mdl-navigation__link" href="study.html">第一周 &nbsp Web前端导论</a>
+                            <a class="mdl-navigation__link" href="">第二周 &nbsp HTML</a>
+                            <a class="mdl-navigation__link" href="">第三周 &nbsp CSS</a>
+                            <a class="mdl-navigation__link" href="">第四周 &nbsp Javascript</a>
+                            <a class="mdl-navigation__link" href="">第五周 &nbsp Vue.js和Node.js</a>
+                        </nav>
+                    </div>
+                    <main class="mdl-layout__content">
+                        <div class="page-content">
+                            <ul class="mdl-stepper mdl-stepper--horizontal" id="stepper"
+                                style="max-width: none;box-shadow: none;margin: 0;min-height: 573px">
+                                <li class="mdl-step">
+                                    <span class="mdl-step__label">
+                                        <span class="mdl-step__title">
+                                            <span class="mdl-step__title-text">Web前端导论</span>
+                                        </span>
+                                    </span>
+                                    <div class="mdl-step__content" style="margin: 0;width: 100%;height: 100%;">
+                                        <div>
+                                            <img src="images/lessons/l1.png">
+                                            <div>
+                                                <div>
+                                                    <a class="mdl-navigation__link"
+                                                       href="study.html">进行Web前端开发需要掌握的技能</a>
+                                                    <span class="mdl-typography--caption">视频 20分钟</span>
+                                                    <img class="checked-mark" src="images/icons/checked.png"
+                                                         title="已完成">
+                                                </div>
+                                                <span class="mdl-typography--body-1">掌握HTML是网页的核心，是一种制作万维网页面的标准语言，
+                                                    是万维网浏览器使用的一种语言，它消除了不同计算机之间信息交流的障碍。因此，它是目前网络上应用最为广泛的语言，
+                                                    也是构成网页文档的主要语言，学好HTML是成为Web开发人员的基本条件。</span>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <img src="images/lessons/l2.jpg">
+                                            <div>
+                                                <div>
+                                                    <a class="mdl-navigation__link">前端工程师就业前景</a>
+                                                    <span class="mdl-typography--caption">视频 15分钟</span>
+                                                    <img class="checked-mark" src="images/icons/unchecked.png"
+                                                         title="未完成">
+                                                </div>
+                                                <span class="mdl-typography--body-1">Web前端是一个很新的职业，在国内乃至国际上真正开始受到重视的时间不超过5年。
+                                                    Web前端开拓是从网页制作演变而来的，名称上有很明显的时代特性。在互联网的演变进程傍边，网页制作是Web1.0时代的产品，
+                                                    其时网站的基本内容都是动态的，用户利用网站的行为也以浏览为主。</span>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <img src="images/lessons/l3.png" style="margin-top: 20px">
+                                            <div>
+                                                <div>
+                                                    <a class="mdl-navigation__link" href="homework.html">作业</a>
+                                                    <span class="mdl-typography--caption">5题 15分钟</span>
+                                                    <img class="checked-mark" src="images/icons/unchecked.png"
+                                                         title="未完成">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mdl-step__actions"></div>
+                                </li>
+                                <li class="mdl-step">
+                                    <span class="mdl-step__label">
+                                        <span class="mdl-step__title">
+                                            <span class="mdl-step__title-text">HTML</span>
+                                        </span>
+                                    </span>
+                                    <div class="mdl-step__content">
+                                    </div>
+                                    <div class="mdl-step__actions"></div>
+                                </li>
+                                <li class="mdl-step">
+                                    <span class="mdl-step__label">
+                                        <span class="mdl-step__title">
+                                            <span class="mdl-step__title-text">CSS</span>
+                                        </span>
+                                    </span>
+                                    <div class="mdl-step__content"></div>
+                                    <div class="mdl-step__actions"></div>
+                                </li>
+                                <li class="mdl-step">
+                                    <span class="mdl-step__label">
+                                        <span class="mdl-step__title">
+                                            <span class="mdl-step__title-text">Javascript</span>
+                                        </span>
+                                    </span>
+                                    <div class="mdl-step__content" style="margin: 0;width: 100%;height: 100%;">
+                                        <div>
+                                            <img src="images/lessons/l4.jpg">
+                                            <div>
+                                                <div>
+                                                    <a class="mdl-navigation__link" href="study.html">Javascript基本介绍</a>
+                                                    <span class="mdl-typography--caption">视频 20分钟</span>
+                                                    <img class="checked-mark" src="images/icons/unchecked.png"
+                                                         title="未完成">
+                                                </div>
+                                                <span class="mdl-typography--body-1">JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，
+                                                    内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML
+                                                    （标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能。</span>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <img src="images/lessons/l3.png" style="margin-top: 20px">
+                                            <div>
+                                                <div>
+                                                    <a class="mdl-navigation__link" href="homework.html">作业</a>
+                                                    <span class="mdl-typography--caption">5题 15分钟</span>
+                                                    <img class="checked-mark" src="images/icons/unchecked.png"
+                                                         title="未完成">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mdl-step__actions"></div>
+                                </li>
+                                <li class="mdl-step">
+                                    <span class="mdl-step__label">
+                                        <span class="mdl-step__title">
+                                            <span class="mdl-step__title-text">Vue.js和Node.js</span>
+                                        </span>
+                                    </span>
+                                    <div class="mdl-step__content"></div>
+                                    <div class="mdl-step__actions"></div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="js/script.js"></script>
+
+</body>
+
+</html>

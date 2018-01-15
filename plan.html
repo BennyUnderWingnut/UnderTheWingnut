@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>课程规划 - iGenius</title>
+    <link rel="stylesheet" href="css/material.blue-orange.min.css"/>
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/fonts.css" type="text/css">
+    <link rel="stylesheet" href="css/getmdl-select.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="mdl-stepper-master/stepper.min.css">
+    <script src="js/material.min.js"></script>
+    <script defer src="mdl-stepper-master/stepper.min.js"></script>
+    <script defer src="js/getmdl-select.js"></script>
+    <script src="js/jQuery.js"></script>
+    <style>
+        #stepper {
+            margin: 40px auto;
+        }
+
+        .getmdl-select {
+            margin: 20px 47px;
+        }
+
+        .mdl-data-table th, .mdl-data-table td {
+            text-align: center;
+        }
+
+        .mdl-data-table__row--selectable tr:hover,
+        .mdl-data-table__row--selectable tr:active,
+        .mdl-data-table__row--selectable tr.active {
+            background: #f5f5f5;
+        }
+
+        .mdl-data-table__select {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="mdl-card mdl-shadow--2dp user-card" style="z-index: 2;min-height: 0;display: none;">
+        <div>
+            <div class="user-avatar-large">
+                <img src="images/icons/avatar.jpg" alt/>
+            </div>
+            <div style="display: inline-block;width: 160px;height: 96px;margin-left: 20px">
+                <span style="display: block;line-height: normal;font:bold 13px arial, sans-serif ; ">chensihao</span>
+                <span style="display: block;line-height: normal;font:13px arial, sans-serif;color: rgb(102,102,102) ;">20165009@stu.neu.edu.cn</span>
+                <div style="position: relative;top: 20px">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                            style="display: inline-block;line-height:28px;height: 32px;padding: 0 16px"
+                            onclick=myAccount()>我的账号
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised"
+                            onClick="window.location.href='index.html'"
+                            style="margin: auto;display: inline-block;line-height:28px;height: 32px;padding: 0">
+                        注销
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--waterfall" id="header" style="z-index: 0">
+            <div class="cover">
+                <!-- Top row, always visible -->
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <img src="images/icons/icon-white.png" alt class="icon-small">
+                    <span class="mdl-layout-title">课程规划</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <div id="search-bar" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+                        </div>
+                    </div>
+                    <div class="user-avatar">
+                        <i class="material-icons  mdl-list__item-avatar" onClick="location.href='login.html'">person</i>
+                    </div>
+                </div>
+                <!-- Bottom row, not visible on scroll -->
+                <div class=" mdl-layout__header-row">
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation -->
+                    <nav class="mdl-navigation">
+
+                        <a class="mdl-navigation__link main this-page" href="index.html"
+                           style="border-bottom: 30px">首页</a>
+                        <a class="mdl-navigation__link schools" href="">所有课程</a>
+                        <a class="mdl-navigation__link forum" href="">合作院校</a>
+                        <a class="mdl-navigation__link plan" href="plan.html">课程规划</a>
+                        <a class="mdl-navigation__link help" href="">帮助</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title drawer-title mdl-color--blue"><img src="images/icons/icon-white.png"
+                                                                                 class="icon-med" alt
+                                                                                 style="top:15px;left: 7px"><span
+                        style="color: #FFFFFF; "><br>iGENIUS</span></span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">home</i>首页</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">list</i>所有课程</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">school</i>合作院校</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">add_shopping_cart</i>课程购买</a>
+                <a class="mdl-navigation__link my" href="my.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">credit_card</i>账户明细</a>
+                <a class="mdl-navigation__link plan" href="plan.html"><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">group_work</i>课程规划</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">build</i>账户设置</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">share</i>合作推广</a>
+                <a class="mdl-navigation__link" href=""><i
+                        class="mdl-color-text--blue-grey-400 material-icons navigation-bar-icons" role="presentation">question_answer</i>帮助</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content" style="z-index: 0">
+            <div class="page-content">
+                <ul class="mdl-stepper mdl-stepper--nonlinear mdl-stepper--horizontal" id="stepper">
+                    <li class="mdl-step">
+                        <span class="mdl-step__label">
+                            <span class="mdl-step__title">
+                                <span class="mdl-step__title-text">第一步</span>
+                                <span class="mdl-step__title-message">选择专业、年级</span>
+                            </span>
+                        </span>
+                        <div class="mdl-step__content">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                                <input class="mdl-textfield__input" type="text" id="chooseMajor" value="计算机"
+                                       data-val="计算机" readonly
+                                       tabIndex="-1" onchange="if(this.value != '') chooseMajor(this.value);">
+                                <label for="chooseMajor" class="mdl-textfield__label">选择专业</label>
+                                <ul for="chooseMajor" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                    <li class="mdl-menu__item" data-val="计算机">计算机</li>
+                                    <li class="mdl-menu__item" data-val="经济管理">经济管理</li>
+                                    <li class="mdl-menu__item" data-val="理工类">理工类</li>
+                                </ul>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                                <input class="mdl-textfield__input" type="text" id="chooseGrade" value="高中"
+                                       data-val="高中" readonly
+                                       tabIndex="-1">
+                                <label for="chooseGrade" class="mdl-textfield__label">选择年级</label>
+                                <ul for="chooseGrade" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                    <li class="mdl-menu__item" data-val="高中">高中</li>
+                                    <li class="mdl-menu__item" data-val="大一">大一</li>
+                                    <li class="mdl-menu__item" data-val="大二">大二</li>
+                                    <li class="mdl-menu__item" data-val="大三">大三</li>
+                                    <li class="mdl-menu__item" data-val="大四">大四</li>
+                                    <li class="mdl-menu__item" data-val="研究生">研究生</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mdl-step__actions">
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised"
+                                    id="major-chosen"
+                                    data-stepper-next>
+                                下一步
+                            </button>
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
+                                取消
+                            </button>
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back disabled>
+                                后退
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mdl-step">
+                        <span class="mdl-step__label">
+                            <span class="mdl-step__title">
+                                <span class="mdl-step__title-text">第二步</span>
+                                <span class="mdl-step__title-message">选择发展方向</span>
+                            </span>
+                        </span>
+                        <div class="mdl-step__content">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                                <input class="mdl-textfield__input" type="text" id="afterGraduate" value="考研"
+                                       data-val="考研" readonly
+                                       tabIndex="-1">
+                                <label for="afterGraduate" class="mdl-textfield__label">选择毕业去向</label>
+                                <ul for="afterGraduate" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                    <li class="mdl-menu__item" data-val="考研">考研</li>
+                                    <li class="mdl-menu__item" data-val="保研">保研</li>
+                                    <li class="mdl-menu__item" data-val="出国留学">出国留学</li>
+                                    <li class="mdl-menu__item" data-val="工作">工作</li>
+                                </ul>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                                <input class="mdl-textfield__input" type="text" id="chooseDirection" readonly
+                                       tabIndex="-1">
+                                <label for="chooseDirection" class="mdl-textfield__label">选择发展方向</label>
+                                <ul for="chooseDirection" class="mdl-menu mdl-menu--bottom-left mdl-js-menu"
+                                    id="directionList">
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mdl-step__actions">
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised"
+                                    data-stepper-next onclick="chooseDirection()">
+                                下一步
+                            </button>
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
+                                取消
+                            </button>
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
+                                后退
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mdl-step">
+                        <span class="mdl-step__label" onclick="chooseDirection()">
+                            <span class="mdl-step__title">
+                                <span class="mdl-step__title-text">第三步</span>
+                                <span class="mdl-step__title-message">选择感兴趣的课程</span>
+                            </span>
+                        </span>
+                        <div class="mdl-step__content">
+                            <table class="mdl-data-table mdl-js-data-table mdl-data-table__row--selectable"
+                                   id="lessons-table"
+                                   style="width: 100%;border-left: 0;border-right: 0;margin: auto">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select"
+                                               for="checkbox-all">
+                                            <input type="checkbox" id="checkbox-all" class="mdl-checkbox__input">
+                                        </label>
+                                    </th>
+                                    <th class="mdl-data-table__cell--non-numeric">课程名称</th>
+                                    <th class="mdl-data-table__cell--non-numeric">学校名称</th>
+                                    <th class="mdl-data-table__cell--non-numeric">课时</th>
+                                    <th class="mdl-data-table__cell--non-numeric">简介</th>
+                                </tr>
+                                </thead>
+                                <tbody id="lessons-tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mdl-step__actions">
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised lessons-selected"
+                                    style="color:#e91e63" onclick="chooseLesson()" data-stepper-next>
+                                免费试听
+                            </button>
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
+                                取消
+                            </button>
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
+                                后退
+                            </button>
+                        </div>
+                    </li>
+                    <li class="mdl-step">
+                        <span class="mdl-step__label" onclick="chooseLesson()">
+                            <span class="mdl-step__title">
+                                <span class="mdl-step__title-text">完成</span>
+                            </span>
+                        </span>
+                        <div class="mdl-step__content step-finish">
+                            <h1 class="mdl-typography--display-1" id="no-chosen"
+                                style="color:rgba(0,0,0,.54);margin-top:20%;display: block;text-align: center">
+                                你还没有选择课程</h1>
+                            <h6 id="related-lessons-title"
+                                style="color:#e91e63;margin-top:0;display: none;text-align: center">
+                                根据您选择的课程，我们还为您推荐了如下课程</h6>
+                            <table class="mdl-data-table mdl-js-data-table mdl-data-table__row--selectable"
+                                   id="related-lessons-table"
+                                   style="width: 100%;border-left: 0;border-right: 0;margin: auto;display: none">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select"
+                                               for="checkbox-all2">
+                                            <input type="checkbox" id="checkbox-all2" class="mdl-checkbox__input">
+                                        </label>
+                                    </th>
+                                    <th class="mdl-data-table__cell--non-numeric">课程名称</th>
+                                    <th class="mdl-data-table__cell--non-numeric">学校名称</th>
+                                    <th class="mdl-data-table__cell--non-numeric">课时</th>
+                                    <th class="mdl-data-table__cell--non-numeric">相关课程</th>
+                                </tr>
+                                </thead>
+                                <tbody id="related-lessons-tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mdl-step__actions">
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised"
+                                    id="complete"
+                                    data-stepper-next disabled style="color: rgba(0, 0, 0, 0.26)">
+                                完成
+                            </button>
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
+                                取消
+                            </button>
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
+                                后退
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+                    <div class="mdl-snackbar__text"></div>
+                    <button class="mdl-snackbar__action" type="button"></button>
+                </div>
+                <footer class="mdl-color--blue">
+                    <div>
+                        <div style="width:211px;display: inline-block;float:left;margin-left: 20px">
+                            <img src="images/icons/icon-white.png" alt class="icon-med">
+                            <span class="mdl-typography--display-1 mdl-color-text--white"
+                                  style="margin-left: 20px">iGENIUS</span>
+                        </div>
+                        <div style='color: white;width: 350px;display: inline-block;margin-left: 17%;
+                        font-family: "Roboto", "Helvetica", "Arial", sans-serif; '>
+                            <div style="">The only way to do great work is to love what you do.</div>
+                            <div style="float: right">- Steve Jobs</div>
+                        </div>
+                        <div class="link-icons">
+                            <a href=""><img src="images/icons/wechat.png"></a>
+                            <a href=""><img src="images/icons/weibo.png"></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="js/script.js"></script>
+<script>
+
+    function chooseDirection() {
+        var direction = document.getElementById('chooseDirection').getAttribute('data-val');
+        $('#lessons-tbody').empty();
+        for (var i = 0; i < lessons[direction].length; i++) {
+            addNewLesson(lessons[direction][i][0], lessons[direction][i][1], lessons[direction][i][2], lessons[direction][i][3]);
+        }
+        chosenLessons = [];
+    }
+
+    (function () {
+        // Stepper linear demonstration
+        var demoLinear = function (e) {
+            // Select stepper container element
+            var element = document.querySelector('.mdl-stepper#stepper');
+
+            if (!element) return;
+
+            // Get the MaterialStepper instance of element to control it
+            var stepper = element.MaterialStepper;
+            var steps = element.querySelectorAll('.mdl-step');
+            var step;
+            var handler = function () {
+                window.location.href = 'index.html';
+            };
+            // Just looping and adding listener to event onstepnext to the all steps
+            for (var i = 0; i < steps.length; i++) {
+                step = steps[i];
+                // When user clicks on [data-stepper-next] button of step
+                step.addEventListener('onstepnext', function (e) {
+                    // {element}.MaterialStepper.next() change the state of current step to "completed"
+                    // and move one step forward
+                    stepper.next();
+                });
+                step.addEventListener('onstepback', function (e) {
+                    stepper.back();
+                });
+                step.addEventListener('onstepcancel', function (e) {
+                    var toast = document.querySelector('#snackbar');
+                    if (!toast) return;
+                    toast.MaterialSnackbar.showSnackbar({
+                        message: '确定返回首页？',
+                        timeout: 4000,
+                        actionHandler: handler,
+                        actionText: '确定'
+                    });
+                })
+            }
+            // When all steps are completed this event is dispatched
+
+            element.addEventListener('onsteppercomplete', function (e) {
+                var toast = document.querySelector('#snackbar');
+                if (!toast) return;
+                toast.MaterialSnackbar.showSnackbar({
+                    message: '课程规划完成',
+                    timeout: 4000,
+                    actionHandler: handler,
+                    actionText: '返回首页'
+                });
+            });
+
+        };
+
+        window.addEventListener('load', demoLinear);
+    })();
+
+    var directions = [];
+    directions['计算机'] = ['前端开发', '后端开发', '大数据', '人工智能'];
+    directions['经济管理'] = ['会计', '金融', '财务管理'];
+    directions['理工类'] = ['数学', '物理', '化学'];
+
+    var lessons = [];
+    lessons['前端开发'] = [
+        ['大学计算机', '北京理工大学', '40小时', '学习最新计算机技术，培养创新思维能力'],
+        ['Java程序设计', '同济大学', '40小时', '打下Java程序设计基础，培养面向对象编程能力'],
+        ['Web前端设计', '东北大学', '20小时', '从静态网页到动态交互，掌握前端设计技巧']
+    ];
+    lessons['后端开发'] = [
+        ['大学计算机', '北京理工大学', '40小时', '学习最新计算机技术，培养创新思维能力'],
+        ['数据结构', '东北大学', '80小时', '介绍数据组织方式和典型算法实现，培养高级程序设计技能'],
+        ['计算机组成原理', '华东师范大学', '60小时', '了解计算机硬件结构，针对软件分析硬件需求'],
+        ['人工智能原理', '北京大学', '40小时', '人工智能的核心思想，基本理论，基本方法与部分应用']
+    ];
+    lessons['会计'] = [
+        ['会计学原理', '厦门大学', '20小时', '掌握会计学基本概念，为会计专业学习打下基础'],
+        ['ACCA财务管理F9', '上海财经大学', '20小时', '掌握财务管理核心内容，系统准备ACCA考试']
+    ]
+
+    var relatedLessons = [];
+    relatedLessons['计算机组成原理'] = [['高等数学', '四川大学', '60小时'], ['大学物理', '东南大学', '60小时']];
+
+    var chosenLessons = [];
+
+    function chooseMajor(major) {
+        setSelectOption('directionList', directions[major]);
+        setValue('chooseDirection', directions[major][0]);
+        setDataValue('chooseDirection', directions[major][0]);
+
+    }
+
+    function removeChildren(selectObj) {
+        if (typeof selectObj !== 'object') {
+            selectObj = document.getElementById(selectObj);
+        }
+
+        while (selectObj.hasChildNodes()) {
+            selectObj.removeChild(selectObj.lastChild);
+        }
+    }
+
+    function setSelectOption(selectObj, optionList) {
+        if (typeof selectObj !== 'object') {
+            selectObj = document.getElementById(selectObj);
+        }
+        removeChildren(selectObj);
+        var len = optionList.length;
+        for (var i = 0; i < len; i++) {
+            var li = document.createElement('li');
+            li.setAttribute('class', 'mdl-menu__item');
+            li.setAttribute('data-val', optionList[i]);
+            li.appendChild(document.createTextNode(optionList[i]));
+            li.setAttribute('tabindex', '-1');
+            selectObj.appendChild(li);
+        }
+    }
+
+    function setValue(obj, value) {
+        if (typeof obj !== 'object') {
+            obj = document.getElementById(obj)
+        }
+        obj.value = value;
+    }
+
+    function setDataValue(obj, value) {
+        if (typeof obj !== 'object') {
+            obj = document.getElementById(obj)
+        }
+        obj.setAttribute('data-val', value);
+    }
+
+    (function () {
+        chooseMajor('计算机');
+    })();
+
+    $(document).on("click", ".mdl-checkbox", function () {
+        var _tableRow = $(this).parents("tr:first");
+        if ($(this).hasClass("is-checked") === false) {
+            _tableRow.addClass("is-selected");
+        } else {
+            _tableRow.removeClass("is-selected");
+        }
+
+    });
+    $(document).on("click", "#checkbox-all", function () {
+        _isChecked = $(this).parent("label").hasClass("is-checked");
+        if (_isChecked === false) {
+            $("#lessons-table").find('tr').addClass("is-selected");
+            $("#lessons-table").find('tr td label').addClass("is-checked");
+        } else {
+            $("#lessons-table").find('tr').removeClass("is-selected");
+            $("#lessons-table").find('tr td label').removeClass("is-checked");
+        }
+
+    });
+    $(document).on("click", "#checkbox-all2", function () {
+        _isChecked = $(this).parent("label").hasClass("is-checked");
+        if (_isChecked === false) {
+            $("#related-lessons-table").find('tr').addClass("is-selected");
+            $("#related-lessons-table").find('tr td label').addClass("is-checked");
+        } else {
+            $("#related-lessons-table").find('tr').removeClass("is-selected");
+            $("#related-lessons-table").find('tr td label').removeClass("is-checked");
+        }
+
+    });
+
+    function addNewLesson(lessonName, schoolName, periods, desccription) {
+        var template = $('#lessonTemplate').html();
+        var _newRow = template.replace(/{{id}}/gi, 'checkbox-' + new Date().getTime())
+            .replace('{{lesson-name}}', lessonName).replace('{{school-name}}', schoolName)
+            .replace('{{periods}}', periods).replace('{{description}}', desccription)
+            .replace('{{value}}', lessonName);
+        $("#lessons-table tbody").append(_newRow);
+        componentHandler.upgradeAllRegistered();
+    }
+
+    function addRelatedLesson(lessonName, schoolName, periods, relatedLesson) {
+        var template = $('#relatedLessonTemplate').html();
+        var _newRow = template.replace(/{{id1}}/gi, 'checkbox-' + new Date().getTime())
+            .replace('{{lesson-name}}', lessonName).replace('{{school-name}}', schoolName)
+            .replace('{{periods}}', periods).replace('{{related-lesson}}', relatedLesson)
+            .replace('{{value}}', lessonName);
+        $("#related-lessons-table tbody").append(_newRow);
+        componentHandler.upgradeAllRegistered();
+    }
+
+    function chooseLesson() {
+        $('.mdl-checkbox').each(function () {
+            if ($(this).hasClass('is-checked')) {
+                chosenLessons.push($(this).attr('data-mdl-data-table-selectable-value'));
+            }
+        })
+        if (chosenLessons.length !== 0) {
+            $('#no-chosen').hide();
+            $('#related-lessons-table').show();
+            $('#related-lessons-title').show();
+            $('#related-lessons-tbody').empty();
+            for (var i = 0; i < chosenLessons.length; i++) {
+                var lesson = chosenLessons[i];
+                for (var j = 0; j < relatedLessons[lesson].length; j++) {
+                    addRelatedLesson(relatedLessons[lesson][j][0], relatedLessons[lesson][j][1], relatedLessons[lesson][j][2], lesson);
+                }
+            }
+        } else {
+            $('#no-chosen').show();
+            $('#related-lessons-table').hide();
+            $('#related-lessons-title').hide();
+        }
+        chosenLessons = [];
+    };
+
+</script>
+
+<script type="text/template" id="lessonTemplate">
+    <tr>
+        <td>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" for="{{id}}"
+                   data-mdl-data-table-selectable-value="{{value}}">
+                <input type="checkbox" id="{{id}}" class="mdl-checkbox__input">
+            </label>
+        </td>
+        <td class="mdl-data-table__cell--non-numeric"><span class="mdl-data-table__label add-table-content"
+                                                            title="lesson name">{{lesson-name}}</span></td>
+        <td class="mdl-data-table__cell--non-numeric"><span class="mdl-data-table__label add-table-content"
+                                                            title="school name">{{school-name}}</span></td>
+        <td class="mdl-data-table__cell--non-numeric"><span class="mdl-data-table__label add-table-content"
+                                                            title="periods">{{periods}}</span></td>
+        <td class="mdl-data-table__cell--non-numeric"><span class="mdl-data-table__label add-table-content"
+                                                            title="description">{{description}}</span></td>
+    </tr>
+</script>
+
+<script type="text/template" id="relatedLessonTemplate">
+    <tr>
+        <td>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" for="{{id1}}"
+                   data-mdl-data-table-selectable-value="{{value}}">
+                <input type="checkbox" id="{{id1}}" class="mdl-checkbox__input">
+            </label>
+        </td>
+        <td class="mdl-data-table__cell--non-numeric"><span class="mdl-data-table__label add-table-content" title="lesson name">{{lesson-name}}</span></td>
+        <td class="mdl-data-table__cell--non-numeric"><span class="mdl-data-table__label add-table-content" title="school name">{{school-name}}</span></td>
+        <td class="mdl-data-table__cell--non-numeric"><span class="mdl-data-table__label add-table-content" title="periods">{{periods}}</span></td>
+        <td class="mdl-data-table__cell--non-numeric"><span class="mdl-data-table__label add-table-content" title="related lesson">{{related-lesson}}</span></td>
+    </tr>
+</script>
+
+</body>
+
+</html>
