@@ -1,0 +1,416 @@
+.link-icons{
+    width: 80px;
+    display: inline-block;
+    float:right;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.link-icons img{
+    width: 20px;
+    height: 20px;
+    padding-left: 15px;
+}
+
+.icon-med {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+.icon-small {
+    width: 40px;
+    height: 40px;
+    padding-right: 20px;
+}
+
+.school-teacher-name {
+    float: right;
+}
+
+.wide-card .mdl-card__title {
+    background-size: 100%;
+    height: 197px;
+    background-position: center;
+}
+
+.mdl-card__supporting-text .school-name {
+    display: inline-block;
+    float: left;
+}
+
+.mdl-card__supporting-text .student-number {
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+}
+
+.card-square .mdl-card--border {
+    font-size: 0px;
+}
+
+.card-square .mdl-button {
+    margin: 0px 2px;
+}
+
+.card-square .mdl-card__title {
+    height: 100px;
+    background-size: 100%;
+}
+
+.mdl-card__supporting-text i {
+    position: relative;
+    font-size: 14px;
+    top: 2px;
+}
+
+.title {
+    margin: 0px 0px 20px 10px;
+}
+
+.teacher-card__supporting button {
+    margin: 0px 16px;
+}
+
+.teacher-card__buttons a {
+    margin: 0px 16px;
+    width: 88px;
+    padding: 0px;
+}
+
+.teacher-card__buttons {
+    padding: 8px 16px;
+}
+
+.cover {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+}
+
+.teacher-card {
+    font-size: 0;
+    display: inline-block;
+    margin: 0px 10px;
+    width: 280px;
+    height: 320px;
+}
+
+.teachers-line {
+    font-size: 0;
+    width: 1200px;
+    margin: 10px auto;
+}
+
+.teacher-card__title-blue {
+    height: 40px;
+    padding: 16px;
+    background-color: #81D4FA;
+}
+
+.teacher-card__title-yellow {
+    height: 40px;
+    padding: 16px;
+    background-color: #FFF59D;
+}
+
+.teacher-card__title-green {
+    height: 40px;
+    padding: 16px;
+    background-color: #A5D6A7;
+}
+
+.teacher-card__title-pink {
+    height: 40px;
+    padding: 16px;
+    background-color: #F48FB1;
+}
+
+.teacher-card__main {
+    color: rgba(0, 0, 0, .54);
+    font-size: 14px;
+    padding: 16px;
+    height: 87px;
+}
+
+.teacher-card__supporting {
+    padding: 16px;
+    height: 72px;
+}
+
+.avatar {
+    display: inline-block;
+    height: 48px;
+    width: 48px;
+    border-radius: 24px;
+}
+
+.avatar img {
+    height: 40px;
+    width: 40px;
+    border-radius: 24px;
+}
+
+.teacher-name {
+    position: absolute;
+    top: 16px;
+    left: 72px;
+}
+
+.teacher-name span {
+    font-size: 14px;
+}
+
+.teacher-position {
+    position: absolute;
+    top: 36px;
+    left: 72px;
+}
+
+.teacher-position span {
+    color: rgba(0, 0, 0, .54);
+    font-size: 14px;
+}
+
+.teachers-section {
+    position: static;
+    background-image: url(../images/background/bg-professor.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    top: 0;
+    background-color: #eceff1;
+    padding: 20px 10px;
+}
+
+.turnimg-section {
+    background-image: url(../images/background/snow.jpg);
+    background-size: 20%;
+    background-position: bottom;
+    background-repeat: repeat-x;
+    background-color: #DBF1FE;
+    padding: 20px;
+}
+
+#tab-bar {
+    width: 1180px;
+}
+
+.tab-content {
+    height: 554px;
+    overflow: visible;
+}
+
+.tab-content .box-line {
+    position: relative;
+    left: -10px;
+}
+
+.categories-window {
+    width: 1190px;
+    height: 700px;
+    border-radius: 2px;
+    margin: 10px;
+}
+
+.categories-section > div {
+    position: relative;
+    left: -10PX;
+    margin: 20px auto;
+    width: 1180px
+}
+
+.categories-section {
+    background-image: url(../images/background/kite.png);
+    background-color: #DBF1FE;
+    background-position: bottom;
+    background-size: 50%;
+    background-repeat: repeat-x;
+    height: 740px;
+    padding: 10px 20px;
+}
+
+body {
+    background-image: url(../images/background/bg-college.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.lesson-packages-section {
+    background-image: url(../images/background/city.png);
+    background-position: center bottom;
+    background-repeat: repeat-x;
+    background-size: 20% auto;
+    background-color: #E1F5FE;
+    padding: 20px 10px;
+}
+
+.new-lessons-section {
+    background-image: url(../images/background/landscape.png);
+    background-position: 500px bottom;
+    background-repeat: repeat-x;
+    background-color: #E1F5FE;
+    background-size: auto 20%;
+    padding: 20px 10px;
+}
+
+.navigation-bar-icons {
+    margin-right: 40px;
+}
+
+.hot-lessons-section {
+    position: static;
+    background-image: url(../images/background/bg-students.jpg);
+    background-size: cover;
+    padding: 20px 10px;
+    z-index: 10;
+}
+
+.continue-study-section {
+    display: none;
+    padding: 20px 10px;
+    background-image: url(../images/background/mountain.png);
+    background-size: 20%;
+    background-position: bottom;
+    background-repeat: repeat-x;
+    background-color: rgb(156, 211, 249);
+}
+
+.box-line {
+    font-size: 0;
+    margin: 10px auto;
+    width: 1200px;
+}
+
+.title > span {
+    display: block;
+    margin: 10px auto;
+    letter-spacing: 2PX;
+    position: relative;
+    left: -6px;
+    padding: 10px 18px 10px 20px;
+    width: 104px;
+    color: white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.continue-study-section > .box-line > .title > span {
+    background: #2196F3;
+}
+
+.hot-lessons-section > .box-line > .title > span {
+    background: #03A9F4;
+}
+
+.new-lessons-section > .box-line > .title > span {
+    background: #009688;
+}
+
+.categories-section > div > .title > span {
+    background: #3F51B5;
+}
+
+.lesson-packages-section > .box-line > .title > span {
+    background: #E91E63;
+}
+
+.teachers-section > .teachers-line > .title > span {
+    background: #673AB7;
+}
+
+.wide-card {
+    display: inline-block;
+    font-size: 0;
+    width: 580px;
+    height: 300px;
+    margin: 0px 10px;
+}
+
+.card-long {
+    width: 220px;
+    height: 400px;
+    margin: 0px 10px;
+    display: inline-block;
+}
+
+.card-square.mdl-card {
+    width: 220px;
+    height: 257px;
+    margin: 0px 10px;
+    display: inline-block;
+}
+
+.mdl-card {
+    user-select: none;
+}
+
+.card-square > .mdl-card__title {
+    color: #fff;
+}
+
+#search-bar {
+    margin-right: 50px;
+    margin-top: 10px;
+}
+
+.user-card{
+    position: absolute;
+    float: right;
+    top: 60px;
+    right: 40px;
+    padding: 20px;
+}
+
+.user-avatar-large {
+    position: relative;
+    height: 96px;
+    width: 96px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.user-avatar-large img {
+    position: relative;
+    height: 96px;
+    width: 96px;
+    border-radius: 50%;
+}
+
+.user-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.user-avatar img {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+
+.mdl-layout__title {
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 300;
+}
+
+footer {
+    min-height: 60px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+footer > div{
+    max-width: 1200px;
+    margin: auto;
+}
+
+a{
+    cursor: pointer;
+}
+
